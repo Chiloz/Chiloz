@@ -85,7 +85,7 @@ body {
      Replace "background.jpg" with your image filename.
      The image must be in the same folder as this file.
      DELETE the three lines below if you want no image.  */
-  background-image: url("flower.jpeg");
+  background-image: url("water.jpg");
   background-size: cover; 
   background-attachment: fixed;
   background-position: center;
