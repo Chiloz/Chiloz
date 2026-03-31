@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Josaphat · About</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Josaphat<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="wrap">
+
+      <div class="page-head reveal">
+        <h2>About Me</h2>
+        <p>A little bit about who I am and what drives me</p>
+      </div>
+
+      <!-- Bio + photo side by side -->
+      <div class="card card-pad reveal" style="margin-bottom: 14px;">
+        <div class="about-top">
+
+          <!-- ✏️ Your photo here -->
+          <div class="about-photo">
+            <img
+              src="WhatsApp Image 2026-03-30 at 5.50.55 PM.jpeg"
+              alt="Josaphat"
+              onerror="this.style.display='none'"
+            />
+          </div>
+
+          <div>
+            <div class="card-icon">👤</div>
+            <h3>Who I Am</h3>
+            <!-- ✏️ Edit your bio here -->
+            <p>
+              I'm Josaphat, an IT student at Manda Hill Excellence Hub in Lusaka, Zambia.
+              I'm drawn to technology because it's always changing — there's always
+              something new to learn and build. I enjoy working on projects that solve
+              real problems, no matter how small.
+            </p>
+            <p style="margin-top: 10px;">
+              When I'm not studying or coding, I'm probably watching tech videos,
+              tinkering with something, or helping friends with their devices — classic
+              IT student behaviour.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="card card-pad reveal">
+          <div class="card-icon">🎯</div>
+          <h3>My Interests</h3>
+          <!-- ✏️ I will be editing this list as time goes by -->
+          <ul>
+            <li>Web Development</li>
+            <li>Cybersecurity</li>
+            <li>Networking &amp; Infrastructure</li>
+            <li>Mobile App Development</li>
+            <li>Cloud Computing</li>
+          </ul>
+        </div>
+
+        <div class="card card-pad reveal">
+          <div class="card-icon">🌱</div>
+          <h3>Currently Learning</h3>
+          <!-- ✏️ I will be editing this list as I progress -->
+          <ul>
+            <li>PHP &amp; Laravel basics</li>
+            <li>Linux administration</li>
+            <li>Python scripting</li>
+            <li>Cisco Networking basics</li>
+          </ul>
+        </div>
+
+        <div class="card card-pad reveal" style="grid-column: 1 / -1;">
+          <div class="card-icon">💡</div>
+          <h3>My Goal</h3>
+          <!-- ✏️ Edit your goal here -->
+          <p>
+            To graduate as a well-rounded IT professional who contributes
+            meaningfully to Zambia's growing tech space and the world at large.
+            I believe technologyshould create opportunities — and I want to be
+            part of building that future.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="ft-left">
+        <div class="ft-name">Josaphat Chilokoto</div>
+        <div class="ft-sub">IT Student · Lusaka, Zambia</div>
+      </div>
+      <div class="ft-links">
+        <a href="mailto:josaphatkychiloz@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/260954030644" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
+    </div>
+  </footer>
+
+  <script>
+    var obs = new IntersectionObserver(function(e) {
+      e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) { obs.observe(el); });
+  </script>
+
+</body>
+</html>

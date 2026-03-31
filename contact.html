@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Josaphat · Contact</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Josaphat<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="wrap">
+
+      <div class="page-head reveal">
+        <h2>Contact Me</h2>
+        <p>Send a message or reach out on any platform</p>
+      </div>
+
+      <!-- Quick contact buttons -->
+      <div class="contact-buttons reveal-stagger">
+
+        <a href="mailto:josaphatkychiloz@gmail.com" class="contact-btn">
+          <i class="fa-solid fa-envelope" style="color: #7ec4ff;"></i>
+          <span>Email</span>
+          <small>josaphatkychiloz@gmail.com</small>
+        </a>
+
+        <a href="https://wa.me/260954030644" target="_blank" class="contact-btn">
+          <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+          <span>WhatsApp</span>
+          <small>Chat directly</small>
+        </a>
+
+        <a href="https://github.com/Chiloz" target="_blank" class="contact-btn">
+          <i class="fa-brands fa-github" style="color: rgba(255,255,255,0.75);"></i>
+          <span>GitHub</span>
+          <small>See my code</small>
+        </a>
+
+        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" class="contact-btn">
+          <i class="fa-brands fa-linkedin" style="color: #4fa3e0;"></i>
+          <span>LinkedIn</span>
+          <small>Connect professionally</small>
+        </a>
+
+      </div>
+
+      <div class="contact-divider">
+        <span>or send me a message below</span>
+      </div>
+
+      <!-- Form card -->
+      <div class="card card-pad reveal">
+
+        <!-- Thank you message — hidden until form sent -->
+        <div id="thank-you" style="display:none; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #4ade80; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; font-size: 0.88rem;">
+          <i class="fa-solid fa-circle-check"></i> Thanks! Your message has been sent. I'll get back to you soon.
+        </div>
+
+        <form id="contact-form" action="https://formspree.io/f/xwvwopdq" method="POST">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Mutale Banda" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g. Internship Opportunity" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-blue" style="width: 100%; padding: 14px; font-size: 0.95rem; justify-content: center;">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="ft-left">
+        <div class="ft-name">Josaphat Chiloz</div>
+        <div class="ft-sub">IT Student · Lusaka, Zambia</div>
+      </div>
+      <div class="ft-links">
+        <a href="mailto:josaphatkychiloz@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/260954030644" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <div class="ft-copy">© 2025 Josaphat · Zambia 🇿🇲</div>
+    </div>
+  </footer>
+
+  <script>
+    /* Scroll reveal */
+    var obs = new IntersectionObserver(function(e) {
+      e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
+    }, { threshold: 0.10 });
+    document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) { obs.observe(el); });
+
+    /* Form — no redirect, shows thank-you on success */
+    var form = document.getElementById("contact-form");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      }).then(function(r) {
+        if (r.ok) {
+          document.getElementById("thank-you").style.display = "block";
+          form.reset();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
