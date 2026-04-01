@@ -6,6 +6,15 @@
   <title>Josaphat · Resume</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+  .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
+  @media (max-width: 600px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: rgba(8,12,28,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; gap: 4px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 10px 16px; border-radius: 10px; }
+    .hamburger { display: block; }
+  }
+</style>
 </head>
 <body>
 
@@ -18,6 +27,9 @@
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact</a>
     </div>
+    <button class="hamburger" onclick="this.previousElementSibling.classList.toggle('open')">
+  <i class="fa-solid fa-bars"></i>
+</button>
   </nav>
 
   <div class="page-content">
@@ -171,6 +183,13 @@
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(function(el) { obs.observe(el); });
   </script>
+  <script>
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
