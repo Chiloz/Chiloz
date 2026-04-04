@@ -6,15 +6,6 @@
   <title>Josaphat · Projects</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-  .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
-  @media (max-width: 600px) {
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: rgba(8,12,28,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; gap: 4px; }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 10px 16px; border-radius: 10px; }
-    .hamburger { display: block; }
-  }
-</style>
 </head>
 <body>
 
@@ -28,8 +19,8 @@
       <a href="contact.html">Contact</a>
     </div>
     <button class="hamburger" onclick="this.previousElementSibling.classList.toggle('open')">
-  <i class="fa-solid fa-bars"></i>
-</button>
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </nav>
 
   <div class="page-content">
@@ -40,82 +31,64 @@
         <p>Things I've built, learned from, and am proud of</p>
       </div>
 
-      <!-- Cards stagger in one by one -->
       <div class="proj-grid reveal-stagger">
 
-        <!-- ✏️ PROJECT CARD
-             Change the src image to your screenshot.
-             To add a live link, uncomment the View Live button. -->
-
         <div class="card proj-card">
-          <img class="proj-img" src="Sleek_workspace_with_coding_setup.png" alt="Timetable Manager"
-               onerror="this.style.display='none'" />
+          <img class="proj-img" src="Sleek_workspace_with_coding_setup.png" alt="Timetable Manager" onerror="this.style.display='none'" />
           <div class="proj-body">
             <div class="proj-tag">Web App</div>
             <h3>Student Timetable Manager</h3>
             <p>A web app to help students organise weekly class schedules, set reminders, and track assignments.</p>
             <div class="tech-row">
-              <span class="tech">HTML</span>
-              <span class="tech">CSS</span>
-              <span class="tech">JavaScript</span>
+              <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span>
             </div>
           </div>
         </div>
 
         <div class="card proj-card">
-          <img class="proj-img" src="Cozy_desk_with_website_planning_sketch.png" alt="Library System"
-               onerror="this.style.display='none'" />
+          <img class="proj-img" src="Cozy_desk_with_website_planning_sketch.png" alt="Library System" onerror="this.style.display='none'" />
           <div class="proj-body">
             <div class="proj-tag">Database</div>
             <h3>Library Management System</h3>
             <p>A complete library system with book tracking, member records, and borrowing history.</p>
             <div class="tech-row">
-              <span class="tech">PHP</span>
-              <span class="tech">MySQL</span>
-              <span class="tech">Bootstrap</span>
+              <span class="tech">PHP</span><span class="tech">MySQL</span><span class="tech">Bootstrap</span>
             </div>
           </div>
         </div>
 
         <div class="card proj-card">
-          <img class="proj-img" src="Futuristic IT visual.png" alt="Network Setup"
-               onerror="this.style.display='none'" />
+          <img class="proj-img" src="Futuristic IT visual.png" alt="Network Setup" onerror="this.style.display='none'" />
           <div class="proj-body">
             <div class="proj-tag">Networking</div>
             <h3>Home Network Setup</h3>
             <p>Designed a small network with routers, switches, and basic security config using Cisco Packet Tracer.</p>
             <div class="tech-row">
-              <span class="tech">Cisco</span>
-              <span class="tech">Packet Tracer</span>
+              <span class="tech">Cisco</span><span class="tech">Packet Tracer</span>
             </div>
           </div>
         </div>
 
         <div class="card proj-card">
-          <img class="proj-img" src="Focused coding at night.png" alt="Quiz App"
-               onerror="this.style.display='none'" />
+          <img class="proj-img" src="Focused coding at night.png" alt="Quiz App" onerror="this.style.display='none'" />
           <div class="proj-body">
             <div class="proj-tag">Python</div>
             <h3>Quiz App (CLI)</h3>
             <p>A command-line quiz application that reads questions from a file and tracks user scores.</p>
             <div class="tech-row">
-              <span class="tech">Python</span>
-              <span class="tech">File I/O</span>
+              <span class="tech">Python</span><span class="tech">File I/O</span>
             </div>
           </div>
         </div>
 
         <div class="card proj-card">
-          <img class="proj-img" src="Web design workspace with wireframes.png" alt="Portfolio"
-               onerror="this.style.display='none'" />
+          <img class="proj-img" src="Web design workspace with wireframes.png" alt="Portfolio" onerror="this.style.display='none'" />
           <div class="proj-body">
             <div class="proj-tag">Personal</div>
             <h3>This Portfolio Website</h3>
             <p>My personal portfolio — dark liquid glass style, built from scratch and easy to maintain.</p>
             <div class="tech-row">
-              <span class="tech">HTML</span>
-              <span class="tech">CSS</span>
-              <span class="tech">JavaScript</span>
+              <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span>
             </div>
           </div>
         </div>
@@ -133,7 +106,7 @@
   <footer>
     <div class="footer-inner">
       <div class="ft-left">
-        <div class="ft-name">Josaphat Chiloz</div>
+        <div class="ft-name">Josaphat Chilokoto</div>
         <div class="ft-sub">IT Student · Lusaka, Zambia</div>
       </div>
       <div class="ft-links">
@@ -142,7 +115,7 @@
         <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="ft-copy">© 2025 Josaphat · Zambia 🇿🇲</div>
+      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
     </div>
   </footer>
 
@@ -151,14 +124,10 @@
       e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
     }, { threshold: 0.10 });
     document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) { obs.observe(el); });
-  </script>
-  <script>
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.remove('open');
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() { document.querySelector('.nav-links').classList.remove('open'); });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>

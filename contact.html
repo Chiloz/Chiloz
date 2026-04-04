@@ -6,15 +6,6 @@
   <title>Josaphat · Contact</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-  .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
-  @media (max-width: 600px) {
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: rgba(8,12,28,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; gap: 4px; }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 10px 16px; border-radius: 10px; }
-    .hamburger { display: block; }
-  }
-</style>
 </head>
 <body>
 
@@ -28,8 +19,8 @@
       <a href="contact.html" class="active">Contact</a>
     </div>
     <button class="hamburger" onclick="this.previousElementSibling.classList.toggle('open')">
-  <i class="fa-solid fa-bars"></i>
-</button>
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </nav>
 
   <div class="page-content">
@@ -42,42 +33,37 @@
 
       <!-- Quick contact buttons -->
       <div class="contact-buttons reveal-stagger">
-
-        <a href="mailto:josaphatkychiloz@gmail.com" class="contact-btn">
-          <i class="fa-solid fa-envelope" style="color: #7ec4ff;"></i>
+        <a href="mailto:josaphatkychiloz@gmail.com" class="contact-btn email">
+          <i class="fa-solid fa-envelope" style="color:#7ec4ff;"></i>
           <span>Email</span>
           <small>josaphatkychiloz@gmail.com</small>
         </a>
-
-        <a href="https://wa.me/260954030644" target="_blank" class="contact-btn">
-          <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+        <a href="https://wa.me/260954030644" target="_blank" class="contact-btn whatsapp">
+          <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
           <span>WhatsApp</span>
           <small>Chat directly</small>
         </a>
-
-        <a href="https://github.com/Chiloz" target="_blank" class="contact-btn">
-          <i class="fa-brands fa-github" style="color: rgba(255,255,255,0.75);"></i>
+        <a href="https://github.com/Chiloz" target="_blank" class="contact-btn github">
+          <i class="fa-brands fa-github" style="color:rgba(255,255,255,0.75);"></i>
           <span>GitHub</span>
           <small>See my code</small>
         </a>
-
-        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" class="contact-btn">
-          <i class="fa-brands fa-linkedin" style="color: #4fa3e0;"></i>
+        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" class="contact-btn linkedin">
+          <i class="fa-brands fa-linkedin" style="color:#4fa3e0;"></i>
           <span>LinkedIn</span>
           <small>Connect professionally</small>
         </a>
-
       </div>
 
       <div class="contact-divider">
         <span>or send me a message below</span>
       </div>
 
-      <!-- Form card -->
+      <!-- Form powered by Formspree -->
       <div class="card card-pad reveal">
 
-        <!-- Thank you message — hidden until form sent -->
-        <div id="thank-you" style="display:none; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #4ade80; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; font-size: 0.88rem;">
+        <!-- Thank you message — shows after form is sent -->
+        <div id="thank-you" style="display:none; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#4ade80; border-radius:12px; padding:14px 18px; margin-bottom:16px; font-size:0.88rem;">
           <i class="fa-solid fa-circle-check"></i> Thanks! Your message has been sent. I'll get back to you soon.
         </div>
 
@@ -85,11 +71,11 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Your Name</label>
+              <label for="name">Your Name *</label>
               <input type="text" id="name" name="name" placeholder="e.g. Mutale Banda" required />
             </div>
             <div class="form-group">
-              <label for="email">Your Email</label>
+              <label for="email">Your Email *</label>
               <input type="email" id="email" name="email" placeholder="you@example.com" required />
             </div>
           </div>
@@ -100,11 +86,11 @@
           </div>
 
           <div class="form-group">
-            <label for="message">Message</label>
+            <label for="message">Message *</label>
             <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
           </div>
 
-          <button type="submit" class="btn-blue" style="width: 100%; padding: 14px; font-size: 0.95rem; justify-content: center;">
+          <button type="submit" class="btn-blue" style="width:100%; padding:14px; font-size:0.95rem; justify-content:center;">
             <i class="fa-solid fa-paper-plane"></i> Send Message
           </button>
 
@@ -117,7 +103,7 @@
   <footer>
     <div class="footer-inner">
       <div class="ft-left">
-        <div class="ft-name">Josaphat Chiloz</div>
+        <div class="ft-name">Josaphat Chilokoto</div>
         <div class="ft-sub">IT Student · Lusaka, Zambia</div>
       </div>
       <div class="ft-links">
@@ -126,18 +112,20 @@
         <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="ft-copy">© 2025 Josaphat · Zambia 🇿🇲</div>
+      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
     </div>
   </footer>
 
   <script>
-    /* Scroll reveal */
     var obs = new IntersectionObserver(function(e) {
       e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
     }, { threshold: 0.10 });
     document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) { obs.observe(el); });
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() { document.querySelector('.nav-links').classList.remove('open'); });
+    });
 
-    /* Form — no redirect, shows thank-you on success */
+    /* Formspree — no redirect, shows thank-you message */
     var form = document.getElementById("contact-form");
     form.addEventListener("submit", function(e) {
       e.preventDefault();
@@ -155,13 +143,6 @@
       });
     });
   </script>
-  <script>
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.remove('open');
-    });
-  });
-</script>
 
 </body>
 </html>

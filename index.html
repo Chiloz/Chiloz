@@ -6,19 +6,9 @@
   <title>Josaphat · Home</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-  .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
-  @media (max-width: 600px) {
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: rgba(8,12,28,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; gap: 4px; }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 10px 16px; border-radius: 10px; }
-    .hamburger { display: block; }
-  }
-</style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <a class="nav-logo" href="index.html">Josaphat<span>.</span></a>
     <div class="nav-links">
@@ -29,31 +19,23 @@
       <a href="contact.html">Contact</a>
     </div>
     <button class="hamburger" onclick="this.previousElementSibling.classList.toggle('open')">
-  <i class="fa-solid fa-bars"></i>
-</button>
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </nav>
-  
+
+  <!-- HERO -->
   <section class="hero-section">
-
-    <!-- Background: the laptop image fills the whole screen -->
     <div class="hero-bg"></div>
-
-    <!-- Dark overlay so text is readable -->
     <div class="hero-overlay"></div>
-
-    <!-- Text content on the left -->
     <div class="hero-content">
       <div class="hero-badge">✦ IT Student &amp; Tech Enthusiast · Zambia 🇿🇲</div>
-
       <div class="hero-hello">Hello,</div>
       <div class="hero-name">I'm Josaphat</div>
-
       <p class="hero-tagline">
         A passionate IT student exploring software development,
         networking, and everything tech. Building things that
         matter, one line at a time.
       </p>
-
       <div class="hero-actions">
         <a href="projects.html" class="btn-blue">
           <i class="fa-solid fa-briefcase"></i> View My Work
@@ -63,16 +45,69 @@
         </a>
       </div>
     </div>
-
-    <!-- Scroll down indicator -->
     <div class="hero-scroll">
       <span>SCROLL</span>
       <i class="fa-solid fa-chevron-down"></i>
     </div>
-
   </section>
 
-  <!-- FOOTER -->
+  <!-- BELOW HERO -->
+  <div class="home-wrap">
+
+    <!-- Stats -->
+    <div class="stats-strip reveal-stagger">
+      <div class="stat-card"><div class="num">2+</div><div class="lbl">Projects Built</div></div>
+      <div class="stat-card"><div class="num">2</div><div class="lbl">Certifications</div></div>
+      <div class="stat-card"><div class="num">2nd</div><div class="lbl">Year Student</div></div>
+      <div class="stat-card"><div class="num">🇿🇲</div><div class="lbl">Lusaka, Zambia</div></div>
+    </div>
+
+    <!-- What I Do -->
+    <div class="reveal">
+      <div class="home-section-title">What I Do</div>
+      <div class="home-section-sub">Skills I bring to every project</div>
+    </div>
+    <div class="what-grid reveal-stagger">
+      <div class="what-card">
+        <span class="what-icon">🌐</span>
+        <h3>Web Development</h3>
+        <p>Building clean, responsive websites using HTML, CSS, JavaScript and PHP. From simple pages to full systems with databases.</p>
+      </div>
+      <div class="what-card">
+        <span class="what-icon">🔒</span>
+        <h3>Cybersecurity</h3>
+        <p>Understanding how to protect systems and data. Studying threats, vulnerabilities, and how to keep networks safe.</p>
+      </div>
+      <div class="what-card">
+        <span class="what-icon">🖧</span>
+        <h3>Networking</h3>
+        <p>Configuring routers, switches, and network setups using Cisco tools. Building and troubleshooting small networks.</p>
+      </div>
+    </div>
+
+    <!-- About teaser -->
+    <div class="reveal">
+      <div class="home-section-title">About Me</div>
+      <div class="home-section-sub">A little bit about who I am</div>
+    </div>
+    <div class="about-teaser reveal">
+      <img src="WhatsApp Image 2026-03-30 at 5.50.55 PM.jpeg" alt="Josaphat" onerror="this.style.display='none'" />
+      <div>
+        <h3>Josaphat Chilokoto</h3>
+        <p>
+          I'm an IT student at Manda Hill Excellence Hub in Lusaka, Zambia.
+          Passionate about technology, problem solving, and building things
+          that actually work. When I'm not studying I'm probably tinkering
+          with code or helping someone fix their device.
+        </p>
+        <a href="about.html" class="btn-ghost" style="font-size:0.84rem; padding:10px 22px;">
+          Read More <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
   <footer>
     <div class="footer-inner">
       <div class="ft-left">
@@ -80,28 +115,24 @@
         <div class="ft-sub">IT Student · Lusaka, Zambia</div>
       </div>
       <div class="ft-links">
-        <a href="mailto:josaphatkychiloz@gmail.com" title="Email">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-        <a href="https://wa.me/260954030644" target="_blank" title="WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="https://github.com/Chiloz" target="_blank" title="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
+        <a href="mailto:josaphatkychiloz@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/260954030644" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="ft-copy">© 2025 Josaphat · Zambia 🇿🇲</div>
+      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
     </div>
   </footer>
-<script>
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.remove('open');
+
+  <script>
+    var obs = new IntersectionObserver(function(e) {
+      e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
+    }, { threshold: 0.10 });
+    document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) { obs.observe(el); });
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() { document.querySelector('.nav-links').classList.remove('open'); });
     });
-  });
-</script>
+  </script>
+
 </body>
 </html>

@@ -6,15 +6,6 @@
   <title>Josaphat · Resume</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-  .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
-  @media (max-width: 600px) {
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: rgba(8,12,28,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; gap: 4px; }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 10px 16px; border-radius: 10px; }
-    .hamburger { display: block; }
-  }
-</style>
 </head>
 <body>
 
@@ -28,8 +19,8 @@
       <a href="contact.html">Contact</a>
     </div>
     <button class="hamburger" onclick="this.previousElementSibling.classList.toggle('open')">
-  <i class="fa-solid fa-bars"></i>
-</button>
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </nav>
 
   <div class="page-content">
@@ -43,6 +34,7 @@
       <!-- EDUCATION -->
       <div class="res-section reveal">
         <div class="res-label">🎓 Education</div>
+
         <div class="card res-entry">
           <div class="res-row">
             <div>
@@ -51,12 +43,9 @@
             </div>
             <div class="res-date">2022 – 2023</div>
           </div>
-          <div class="res-desc">
-            Covering Microsoft Office, Business Communication Skills, Online Safety,
-            and Online Essentials.
-          </div>
+          <div class="res-desc">Covering Microsoft Office, Business Communication Skills, Online Safety, and Online Essentials.</div>
         </div>
-        <!-- ✏️ Edit your high school -->
+
         <div class="card res-entry">
           <div class="res-row">
             <div>
@@ -65,10 +54,9 @@
             </div>
             <div class="res-date">2019</div>
           </div>
-          <div class="res-desc">
-            Completed with credits in Mathematics, Science, and Computer Studies.
-          </div>
+          <div class="res-desc">Completed with credits in Mathematics, Science, and Computer Studies.</div>
         </div>
+
         <div class="card res-entry">
           <div class="res-row">
             <div>
@@ -77,10 +65,7 @@
             </div>
             <div class="res-date">2025 – Present</div>
           </div>
-          <div class="res-desc">
-            Covering networking, databases, software engineering, cybersecurity,
-            and systems analysis. Currently in Year 2.
-          </div>
+          <div class="res-desc">Covering networking, databases, software engineering, cybersecurity, and systems analysis. Currently in Year 2.</div>
         </div>
       </div>
 
@@ -88,7 +73,6 @@
       <div class="res-section reveal">
         <div class="res-label">💼 Experience</div>
 
-        <!-- ✏️ Edit or copy to add more -->
         <div class="card res-entry">
           <div class="res-row">
             <div>
@@ -97,10 +81,7 @@
             </div>
             <div class="res-date">2024 – Present</div>
           </div>
-          <div class="res-desc">
-            Building websites for small businesses and individuals using HTML, CSS,
-            JavaScript, and PHP.
-          </div>
+          <div class="res-desc">Building websites for small businesses and individuals using HTML, CSS, JavaScript, and PHP.</div>
         </div>
       </div>
 
@@ -110,16 +91,15 @@
 
         <p class="skills-sublabel">Technical</p>
         <div class="chips" style="margin-bottom: 14px;">
-          <!-- ✏️ Add or remove chips — copy a <div class="chip"> line -->
           <div class="chip blue">HTML &amp; CSS</div>
           <div class="chip blue">JavaScript</div>
           <div class="chip blue">PHP</div>
           <div class="chip">MySQL</div>
           <div class="chip">Linux</div>
-          <div class="chip">Git &amp; GitHub</div>
+          <div class="chip blue">Git &amp; GitHub</div>
           <div class="chip">Networking (CCNA basics)</div>
           <div class="chip">Laravel (learning)</div>
-          <div class="chip">Microsoft Office</div>
+          <div class="chip blue">Microsoft Office</div>
         </div>
 
         <p class="skills-sublabel">Soft Skills</p>
@@ -136,7 +116,6 @@
       <div class="res-section reveal">
         <div class="res-label">📜 Certifications</div>
 
-        <!-- ✏️ Copy this block to add more certifications -->
         <div class="card res-entry">
           <div class="res-row">
             <div>
@@ -155,7 +134,7 @@
             </div>
             <div class="res-date">2026</div>
           </div>
-        </div> 
+        </div>
       </div>
 
     </div>
@@ -164,7 +143,7 @@
   <footer>
     <div class="footer-inner">
       <div class="ft-left">
-        <div class="ft-name">Josaphat Chiloz</div>
+        <div class="ft-name">Josaphat Chilokoto</div>
         <div class="ft-sub">IT Student · Lusaka, Zambia</div>
       </div>
       <div class="ft-links">
@@ -173,7 +152,7 @@
         <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="ft-copy">© 2025 Josaphat · Zambia 🇿🇲</div>
+      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
     </div>
   </footer>
 
@@ -182,14 +161,10 @@
       e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add("visible"); });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(function(el) { obs.observe(el); });
-  </script>
-  <script>
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.remove('open');
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() { document.querySelector('.nav-links').classList.remove('open'); });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
