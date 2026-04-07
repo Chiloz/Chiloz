@@ -25,6 +25,51 @@
   --shadow:    0 8px 40px rgba(0, 0, 0, 0.45);
   --shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.30);
 }
+/* Light mode — applies automatically when device is set to light */
+@media (prefers-color-scheme: light) {
+  :root {
+    --glass-mid:    rgba(255, 255, 255, 0.55);
+    --glass-light:  rgba(255, 255, 255, 0.40);
+    --glass-border: rgba(0, 0, 0, 0.10);
+    --glass-border-bright: rgba(0, 0, 0, 0.18);
+    --text:   #0d0d0d;
+    --text2:  rgba(0, 0, 0, 0.70);
+    --text3:  rgba(0, 0, 0, 0.45);
+    --shadow:    0 8px 40px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  body {
+    background: #eef2f8;
+  }
+
+  nav {
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  footer {
+    background: rgba(20, 30, 60, 0.90);
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.60);
+  }
+
+  .what-card,
+  .stat-card,
+  .about-teaser,
+  .contact-btn {
+    background: rgba(255, 255, 255, 0.60);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255, 255, 255, 0.80);
+    color: #0d0d0d;
+  }
+
+  .hero-hello { color: #0d0d0d; }
+}
 
 /* 2. RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
