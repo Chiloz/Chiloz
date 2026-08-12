@@ -1,4 +1,25 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://josaphatchilokoto.space
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://josaphatchilokoto.space/sitemap.xml

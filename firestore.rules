@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Public settings (Hero config & General settings)
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Homepage Posts
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Projects
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Contact messages
+    match /messages/{messageId} {
+      // Public can create messages
+      allow create: if request.resource.data.name is string 
+                    && request.resource.data.email is string 
+                    && request.resource.data.message is string;
+      // Only authenticated admin can read or manage messages
+      allow read, update, delete: if isSignedIn();
+    }
+  }
+}

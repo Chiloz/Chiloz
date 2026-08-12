@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "HeroConfig": {
+      "title": "HeroConfig",
+      "description": "Configuration for the homepage hero section including typing text and background images",
+      "type": "object",
+      "properties": {
+        "badge": { "type": "string" },
+        "greeting": { "type": "string" },
+        "name": { "type": "string" },
+        "tagline": { "type": "string" },
+        "words": { "type": "array" },
+        "sliderImages": { "type": "array" }
+      }
+    },
+    "HomepagePost": {
+      "title": "HomepagePost",
+      "description": "Live posts, announcements, or tech notes posted directly to the homepage",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "badge": { "type": "string" },
+        "date": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "pinned": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content", "date"]
+    },
+    "ProjectItem": {
+      "title": "ProjectItem",
+      "description": "Portfolio projects displayed on the Projects page and Homepage",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "techStack": { "type": "array" },
+        "image": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "description"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Messages submitted by visitors via the contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["name", "email", "message", "date"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global website contact details and social links",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "email": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "github": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "location": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/settings/hero": {
+      "schema": "HeroConfig",
+      "description": "Hero section configuration document"
+    },
+    "/settings/general": {
+      "schema": "SiteSettings",
+      "description": "General site settings document"
+    },
+    "/posts/{postId}": {
+      "schema": "HomepagePost",
+      "description": "Homepage posts collection"
+    },
+    "/projects/{projectId}": {
+      "schema": "ProjectItem",
+      "description": "Projects collection"
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Contact form submissions"
+    }
+  }
+}

@@ -117,6 +117,22 @@
       </div>
     </div>
 
+    <!-- Latest Updates / Direct Homepage Posts Stream -->
+    <div class="reveal">
+      <div class="home-section-title">Latest Updates</div>
+      <div class="home-section-sub">News, announcements, and project highlights posted directly from admin</div>
+    </div>
+    <div id="homepage-posts-feed" class="posts-feed">
+      <div class="post-card">
+        <div class="post-header">
+          <span class="post-badge">Announcement</span>
+          <span class="post-date">Latest Update</span>
+        </div>
+        <h3>Welcome to my Portfolio!</h3>
+        <p>Thank you for visiting. Explore my latest projects in cybersecurity, web systems, and network architecture built right here in Lusaka, Zambia.</p>
+      </div>
+    </div>
+
     <!-- About teaser -->
     <div class="reveal">
       <div class="home-section-title">About Me</div>
@@ -152,10 +168,11 @@
         <a href="https://github.com/Chiloz" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="ft-copy">© 2026 Josaphat · Zambia 🇿🇲</div>
+      <div class="ft-copy"><a href="admin.html" class="ft-hidden-trigger">© 2026 Josaphat · Zambia 🇿🇲</a></div>
     </div>
   </footer>
 
+  <script type="module" src="js/app.js"></script>
   <script>
     /* Typing animation on hero name */
 var words = ["I'm Josaphat", "I'm a Developer", "I'm an IT Student", "Turning coffee into code.", "Fluent in binary and sarcasm.", "I make the buttons you love to click.", "Professional bug creator.", "I speak fluent Python, Java, and Google.", ];
@@ -163,7 +180,8 @@ var i = 0, j = 0, deleting = false;
 var target = document.querySelector(".hero-name");
 
 function type() {
-  var word = words[i];
+  var activeWords = window.customTypingWords || words;
+  var word = activeWords[i % activeWords.length];
   if (!deleting) {
     target.textContent = word.substring(0, j++);
     if (j > word.length) {
@@ -175,7 +193,7 @@ function type() {
     target.textContent = word.substring(0, j--);
     if (j < 0) {
       deleting = false;
-      i = (i + 1) % words.length; /* move to next word */
+      i = (i + 1) % activeWords.length; /* move to next word */
     }
   }
   setTimeout(type, deleting ? 60 : 100);
