@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Josaphat Chilokoto</title>
+<meta name="description" content="Live apps and in-progress builds by Josaphat Chilokoto: Penguin View, Bunny's Gym Record, client websites and a Three.js 3D world.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://josaphatchilokoto.space/projects">
+<meta name="theme-color" content="#060a16">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Josaphat Chilokoto">
+<meta property="og:title" content="Projects | Josaphat Chilokoto"><meta property="og:description" content="Live apps and in-progress builds by Josaphat Chilokoto: Penguin View, Bunny's Gym Record, client websites and a Three.js 3D world.">
+<meta property="og:url" content="https://josaphatchilokoto.space/projects"><meta property="og:image" content="https://josaphatchilokoto.space/assets/images/og-image.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Projects | Josaphat Chilokoto">
+<meta name="twitter:description" content="Live apps and in-progress builds by Josaphat Chilokoto: Penguin View, Bunny's Gym Record, client websites and a Three.js 3D world."><meta name="twitter:image" content="https://josaphatchilokoto.space/assets/images/og-image.png">
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Josaphat Chilokoto", "alternateName": "Chiloz", "url": "https://josaphatchilokoto.space", "image": "https://josaphatchilokoto.space/assets/images/josaphat.webp", "email": "mailto:josaphatkychiloz@gmail.com", "jobTitle": "IT Student & Web Developer", "address": {"@type": "PostalAddress", "addressLocality": "Lusaka", "addressCountry": "ZM"}, "alumniOf": {"@type": "EducationalOrganization", "name": "Manda Hill Excellence Hub"}, "sameAs": ["https://github.com/Chiloz", "https://www.linkedin.com/in/josaphat-chilokoto-009499377/"], "knowsAbout": ["Web Development", "Firebase", "JavaScript", "PHP", "MySQL", "Cybersecurity", "Networking"]}, {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Penguin View", "url": "https://penguin-view-sync.web.app"}, {"@type": "ListItem", "position": 2, "name": "Bunny's Gym Record", "url": "https://bunny-gym-tracker.web.app"}, {"@type": "ListItem", "position": 3, "name": "Busaka Enviroworks"}, {"@type": "ListItem", "position": 4, "name": "Zelo Foods"}, {"@type": "ListItem", "position": 5, "name": "Lifecycle Organics"}, {"@type": "ListItem", "position": 6, "name": "Bushemi Care"}, {"@type": "ListItem", "position": 7, "name": "Penguin's World"}, {"@type": "ListItem", "position": 8, "name": "JOKACHI Bakes"}]}]</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="Josaphat Chilokoto, home">
+      <img src="assets/images/logo-mark-sm.png" alt="" width="40" height="40">
+      <span>Josaphat<small>CHILOKOTO</small></span>
+      <canvas class="brand-drip" aria-hidden="true"></canvas>
+    </a>
+    <nav id="nav-links" class="nav-links" aria-label="Main"><a href="/">Home</a><a href="/about">About</a><a href="/resume">Resume</a><a href="/projects" aria-current="page">Projects</a><a href="/contact">Contact</a></nav>
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch to light mode"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-sun"/></svg></button>
+    <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-bars"/></svg></button>
+  </div>
+</header>
+<main id="main">
+
+<div class="page"><div class="wrap">
+  <div class="page-head reveal"><span class="eyebrow">Projects</span><h1>Things I've built</h1><p>Live products you can open right now, plus what's still in the workshop. Unfinished work is clearly labelled.</p></div>
+  <div class="filters reveal" id="filters" role="group" aria-label="Filter projects">
+    <button class="filter" data-filter="all" aria-pressed="true">All <small>8</small></button>
+    <button class="filter" data-filter="live" aria-pressed="false">Live <small>2</small></button>
+    <button class="filter" data-filter="delivered" aria-pressed="false">Delivered <small>1</small></button>
+    <button class="filter" data-filter="building" aria-pressed="false">In progress <small>5</small></button>
+  </div>
+  <div class="grid-3" id="grid"><article class="card card-hover proj reveal" data-status="live">
+  <div class="cover tone-violet"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-tv"/></svg><span class="status live">Live</span></div>
+  <div class="proj-body"><div class="proj-kind">Web app · Real-time</div><h3>Penguin View</h3><p>Watch videos in sync with friends. Real-time playback sync, local-file playback and built-in chat, wrapped in an iOS-style liquid-glass interface.</p>
+  <div class="tags"><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Firebase</span><span class="tag">Realtime sync</span></div><div class="proj-foot"><a class="btn btn-primary btn-sm" href="https://penguin-view-sync.web.app" target="_blank" rel="noopener noreferrer">Visit live <svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-up-right-from-square"/></svg></a></div></div>
+</article><article class="card card-hover proj reveal" data-status="live">
+  <div class="cover tone-green"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-dumbbell"/></svg><span class="status live">Live</span></div>
+  <div class="proj-body"><div class="proj-kind">Web app · Mobile-first</div><h3>Bunny's Gym Record</h3><p>A mobile-first gym tracker for logging workouts and following progress over time, backed by Firebase Firestore.</p>
+  <div class="tags"><span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Firestore</span></div><div class="proj-foot"><a class="btn btn-primary btn-sm" href="https://bunny-gym-tracker.web.app" target="_blank" rel="noopener noreferrer">Visit live <svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-up-right-from-square"/></svg></a></div></div>
+</article><article class="card card-hover proj reveal" data-status="delivered">
+  <div class="cover tone-cyan"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-leaf"/></svg><span class="status delivered">Delivered</span></div>
+  <div class="proj-body"><div class="proj-kind">Client website</div><h3>Busaka Enviroworks</h3><p>Multi-page, mobile-first website for a Zambian environmental, engineering and technology consultancy based in Ndola. Submitted and delivered.</p>
+  <div class="tags"><span class="tag">Node.js</span><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-lock"/></svg>Client work · private, no public link</span></div></div>
+</article><article class="card card-hover proj reveal unfinished" data-status="building">
+  <div class="cover tone-orange"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-wheat-awn"/></svg><span class="status building">In progress</span></div>
+  <div class="proj-body"><div class="proj-kind">Client website</div><h3>Zelo Foods</h3><p>Multi-page, mobile-first site for a Lusaka agro-processor: Tasty cassava porridge, kapenta and groundnuts, styled from the brand's own colours.</p>
+  <div class="tags"><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-hammer"/></svg>Unfinished: still being built</span></div></div>
+</article><article class="card card-hover proj reveal unfinished" data-status="building">
+  <div class="cover tone-green"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-leaf"/></svg><span class="status building">In progress</span></div>
+  <div class="proj-body"><div class="proj-kind">Client website</div><h3>Lifecycle Organics</h3><p>Website for an ecological-agriculture company, currently in a staging phase before moving to its own domain and hosting.</p>
+  <div class="tags"><span class="tag">JavaScript</span><span class="tag">Responsive</span><span class="tag">Deployment</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-hammer"/></svg>Unfinished: still being built</span></div></div>
+</article><article class="card card-hover proj reveal unfinished" data-status="building">
+  <div class="cover tone-pink"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-mobile-screen"/></svg><span class="status building">In progress</span></div>
+  <div class="proj-body"><div class="proj-kind">App design</div><h3>Bushemi Care</h3><p>Home-care mobile app concept for Bushemi Clinic in Lusaka. Clickable design previews are being iterated with the client.</p>
+  <div class="tags"><span class="tag">UI design</span><span class="tag">HTML</span><span class="tag">Prototype</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-hammer"/></svg>Unfinished: still being built</span></div></div>
+</article><article class="card card-hover proj reveal unfinished" data-status="building">
+  <div class="cover tone-blue"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-cube"/></svg><span class="status building">In progress</span></div>
+  <div class="proj-body"><div class="proj-kind">3D · WebGL</div><h3>Penguin's World</h3><p>An explorable 3D world in Three.js: instanced grass terrain, a day-and-night cycle, a two-storey villa and playable characters.</p>
+  <div class="tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">JavaScript</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-hammer"/></svg>Unfinished: still being built</span></div></div>
+</article><article class="card card-hover proj reveal unfinished" data-status="building">
+  <div class="cover tone-orange"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-cake-candles"/></svg><span class="status building">In progress</span></div>
+  <div class="proj-body"><div class="proj-kind">eCommerce · PHP</div><h3>JOKACHI Bakes</h3><p>Bakery shop with a live custom-cake builder, time-slot pickup at checkout and dietary filters (vegan, gluten-free, nut-free).</p>
+  <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">XAMPP</span></div><div class="proj-foot"><span class="note"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-hammer"/></svg>Unfinished: still being built</span></div></div>
+</article><div class="contents" id="dyn-projects"></div></div>
+  <p class="empty" id="no-results" hidden>Nothing here yet.</p>
+  <section class="section" aria-labelledby="labs"><div class="section-head reveal"><span class="eyebrow">Coursework</span><h2 id="labs">Coursework &amp; labs</h2><p>Smaller builds from my studies.</p></div><div class="lab-list reveal"><div class="card lab"><strong>Database design: Hospital & Bank systems</strong><span class="tag">MySQL · ERD</span><p>ERD diagrams and SQL schemas for a hospital management system and a simple bank.</p></div><div class="card lab"><strong>ClassicModels PHP app</strong><span class="tag">PHP · MySQL</span><p>PHP/MySQL app over the ClassicModels sample database: customer lists, top customers, product views and search.</p></div><div class="card lab"><strong>Student Timetable Manager</strong><span class="tag">HTML · CSS · JavaScript</span><p>Weekly class schedule planner with reminders and assignment tracking.</p></div><div class="card lab"><strong>Library Management System</strong><span class="tag">PHP · MySQL · Bootstrap</span><p>Book tracking, member records and borrowing history.</p></div><div class="card lab"><strong>Home Network Setup</strong><span class="tag">Cisco · Packet Tracer</span><p>Small network with routers, switches and basic security, designed in Cisco Packet Tracer.</p></div></div></section>
+</div></div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="name">Josaphat Chilokoto</div><div class="sub">IT student · Web developer · Lusaka, Zambia</div></div>
+    <div class="socials">
+      <a class="icon-btn" href="mailto:josaphatkychiloz@gmail.com" aria-label="Email"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-envelope"/></svg></a>
+      <a class="icon-btn" href="https://wa.me/260954030644" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-whatsapp"/></svg></a>
+      <a class="icon-btn" href="https://github.com/Chiloz" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-github"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/josaphat-chilokoto-009499377/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-linkedin"/></svg></a>
+    </div>
+    <div class="copy"><a href="/admin" rel="nofollow">© 2026 Josaphat</a> · Zambia 🇿🇲</div>
+  </div>
+</footer>
+<button class="to-top" type="button" aria-label="Back to top"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-up"/></svg></button>
+<script type="module" src="js/site.js"></script><script type="module" src="js/live.js"></script>
+</body>
+</html>

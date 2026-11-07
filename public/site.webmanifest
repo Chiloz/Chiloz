@@ -1,0 +1,15 @@
+{
+  "name": "Josaphat Chilokoto | Web Developer",
+  "short_name": "Josaphat",
+  "description": "Portfolio of Josaphat Chilokoto, IT student and web developer in Lusaka, Zambia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#060a16",
+  "background_color": "#060a16",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

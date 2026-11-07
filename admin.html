@@ -5,14 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard | Josaphat Chilokoto</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon & Search Engine Brand Logo -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#050814" />
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
   <!-- NAVIGATION -->
   <nav>
-    <a class="nav-logo" href="index.html">Josaphat<span>. Admin</span></a>
+    <a class="nav-logo" href="index.html" aria-label="Josaphat Admin">
+      <div class="logo-wrapper">
+        <img class="josaphat-brand-logo" src="assets/images/Josaphat_Logo.png" alt="Josaphat Logo" />
+        <span class="logo-admin-tag">Admin</span>
+        <canvas class="logo-drip-canvas"></canvas>
+      </div>
+    </a>
     <div class="nav-links">
       <a href="index.html"><i class="fa-solid fa-globe"></i> View Site</a>
       <a href="#" id="nav-logout-btn" style="display:none;" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
@@ -29,14 +42,24 @@
       </div>
 
       <!-- 1. LOGIN / AUTH SECTION -->
-      <div id="auth-section" class="card card-pad" style="max-width: 480px; margin: 0 auto;">
+      <div id="auth-section" class="card card-pad" style="max-width: 500px; margin: 0 auto;">
         <div style="text-align: center; margin-bottom: 1.5rem;">
           <div class="card-icon" style="margin: 0 auto 12px; width: 50px; height: 50px; font-size: 24px;">🔒</div>
-          <h3 style="font-size: 1.3rem;">Admin Sign In</h3>
-          <p style="font-size: 0.82rem; color: var(--text3);">Sign in with your Firebase credentials to access management controls.</p>
+          <h3 style="font-size: 1.3rem;" id="auth-heading">Admin Portal Sign In</h3>
+          <p style="font-size: 0.84rem; color: var(--text3);" id="auth-subheading">Access management controls for your portfolio website.</p>
         </div>
 
-        <div id="auth-alert" style="display:none; padding: 10px 14px; border-radius: var(--radius-sm); background: rgba(255,99,132,0.15); border: 1px solid rgba(255,99,132,0.4); color: #ff6384; font-size: 0.82rem; margin-bottom: 14px;"></div>
+        <!-- Auth Tabs: Sign In vs First-Time Set Password -->
+        <div style="display: flex; gap: 6px; background: var(--glass-light); padding: 4px; border-radius: var(--radius-pill); margin-bottom: 18px;">
+          <button type="button" id="tab-login-btn" class="btn-ghost" style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 8px 12px; border-radius: var(--radius-pill); background: var(--accent); color: #fff;" onclick="switchAuthMode('login')">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+          <button type="button" id="tab-signup-btn" class="btn-ghost" style="flex: 1; justify-content: center; font-size: 0.82rem; padding: 8px 12px; border-radius: var(--radius-pill); color: var(--text2);" onclick="switchAuthMode('signup')">
+            <i class="fa-solid fa-user-plus"></i> Set Password / Create
+          </button>
+        </div>
+
+        <div id="auth-alert" style="display:none; padding: 12px 14px; border-radius: var(--radius-sm); font-size: 0.84rem; margin-bottom: 14px;"></div>
 
         <form id="admin-login-form">
           <div class="form-group">
@@ -45,18 +68,18 @@
           </div>
           <div class="form-group">
             <label><i class="fa-solid fa-key"></i> Password</label>
-            <input type="password" id="login-password" placeholder="Enter password" required />
+            <input type="password" id="login-password" placeholder="Enter password (min 6 characters)" required />
           </div>
-          <button type="submit" class="btn-blue" style="width: 100%; justify-content: center; margin-top: 10px;">
+          <button type="submit" id="auth-submit-btn" class="btn-blue" style="width: 100%; justify-content: center; margin-top: 10px;">
             <i class="fa-solid fa-lock-open"></i> Log In to Dashboard
           </button>
         </form>
 
-        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border); text-align: center; font-size: 0.80rem; color: var(--text3);">
-          <p><i class="fa-solid fa-circle-info"></i> First time here?</p>
-          <p style="margin-top: 4px;">If you haven't set a password in Firebase Auth Console yet, click below to launch Demo Admin Mode for testing:</p>
-          <button type="button" class="btn-ghost" onclick="enableDemoAdmin()" style="margin-top: 10px; font-size: 0.80rem; padding: 8px 18px;">
-            <i class="fa-solid fa-bolt"></i> Enter Quick Admin Mode
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border); text-align: center; font-size: 0.82rem; color: var(--text3);">
+          <p><i class="fa-solid fa-circle-info"></i> Instant Quick Access:</p>
+          <p style="margin-top: 4px;">You can also enter Quick Admin Mode immediately without waiting for email setup:</p>
+          <button type="button" class="btn-ghost" onclick="enableDemoAdmin()" style="margin-top: 10px; font-size: 0.82rem; padding: 8px 20px;">
+            <i class="fa-solid fa-bolt"></i> Launch Quick Admin Mode
           </button>
         </div>
       </div>
@@ -71,16 +94,19 @@
               <i class="fa-solid fa-chart-pie"></i> Overview
             </button>
             <button class="admin-tab-btn" onclick="switchAdminTab('hero', this)">
-              <i class="fa-solid fa-heading"></i> Hero & Typing
+              <i class="fa-solid fa-video"></i> Hero Video & Bg
             </button>
             <button class="admin-tab-btn" onclick="switchAdminTab('posts', this)">
-              <i class="fa-solid fa-bullhorn"></i> Homepage Posts
+              <i class="fa-solid fa-bullhorn"></i> Homepage Posts & Media
             </button>
             <button class="admin-tab-btn" onclick="switchAdminTab('projects', this)">
               <i class="fa-solid fa-briefcase"></i> Projects Manager
             </button>
             <button class="admin-tab-btn" onclick="switchAdminTab('messages', this)">
               <i class="fa-solid fa-envelope"></i> Messages Inbox
+            </button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('account', this)">
+              <i class="fa-solid fa-user-shield"></i> Account & Credentials
             </button>
             <button class="admin-tab-btn" onclick="switchAdminTab('seo', this)">
               <i class="fa-solid fa-magnifying-glass"></i> SEO & Crawlers
@@ -93,7 +119,7 @@
             <!-- TAB 1: OVERVIEW -->
             <div id="tab-overview" class="admin-panel active">
               <div class="admin-card">
-                <h3>Welcome back, Admin 👋</h3>
+                <h3>Welcome back, Josaphat 👋</h3>
                 <p>Manage all aspects of your portfolio website in real-time. Changes are immediately saved to Firebase Firestore.</p>
               </div>
 
@@ -103,7 +129,7 @@
                   <div class="lbl">Homepage Posts</div>
                 </div>
                 <div class="stat-card">
-                  <div class="num" id="stat-projects-count">2</div>
+                  <div class="num" id="stat-projects-count">0</div>
                   <div class="lbl">Active Projects</div>
                 </div>
                 <div class="stat-card">
@@ -119,23 +145,75 @@
               <div class="admin-card">
                 <h3>Quick Actions</h3>
                 <div class="btn-row">
-                  <button class="btn-blue" onclick="switchAdminTab('posts', document.querySelectorAll('.admin-tab-btn')[2])">
-                    <i class="fa-solid fa-plus"></i> New Homepage Post
+                  <button class="btn-blue" onclick="switchAdminTab('hero', document.querySelectorAll('.admin-tab-btn')[1])">
+                    <i class="fa-solid fa-video"></i> Custom Hero Background
                   </button>
-                  <button class="btn-ghost" onclick="switchAdminTab('hero', document.querySelectorAll('.admin-tab-btn')[1])">
-                    <i class="fa-solid fa-pen"></i> Edit Hero Text
+                  <button class="btn-blue" onclick="switchAdminTab('posts', document.querySelectorAll('.admin-tab-btn')[2])">
+                    <i class="fa-solid fa-plus"></i> New Post with Files
+                  </button>
+                  <button class="btn-ghost" onclick="switchAdminTab('projects', document.querySelectorAll('.admin-tab-btn')[3])">
+                    <i class="fa-solid fa-folder-plus"></i> Add Project Picture
                   </button>
                   <a href="index.html" target="_blank" class="btn-ghost">
-                    <i class="fa-solid fa-external-link"></i> View Website
+                    <i class="fa-solid fa-external-link"></i> View Live Website
                   </a>
                 </div>
               </div>
             </div>
 
-            <!-- TAB 2: HERO & TYPING WORDS -->
+            <!-- TAB 2: HERO VIDEO & BACKGROUND CUSTOMIZATION -->
             <div id="tab-hero" class="admin-panel">
               <div class="admin-card">
-                <h3>Edit Hero Content</h3>
+                <h3>Hero Section Background Customization</h3>
+                <p style="font-size: 0.85rem; color: var(--text3); margin-bottom: 16px;">
+                  Set a looping background video or picture that plays in the background of your homepage hero section.
+                </p>
+                <form id="hero-bg-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label><i class="fa-solid fa-film"></i> Background Type</label>
+                      <select id="hero-bg-type" class="form-group select" style="border-radius: var(--radius-sm); padding: 11px 14px; background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--glass-border);">
+                        <option value="image">Picture Background (Image)</option>
+                        <option value="video">Looping Video Background (MP4 / WebM)</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label><i class="fa-solid fa-wand-magic-sparkles"></i> Quick Presets</label>
+                      <select id="hero-bg-preset" onchange="applyHeroPreset(this.value)" style="border-radius: var(--radius-sm); padding: 11px 14px; background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--glass-border);">
+                        <option value="">-- Choose Preset --</option>
+                        <option value="Sleek_workspace_with_coding_setup.png|image">Preset 1: Sleek Workspace Desk (Image)</option>
+                        <option value="Futuristic IT visual.png|image">Preset 2: Futuristic IT Cyber (Image)</option>
+                        <option value="Focused coding at night.png|image">Preset 3: Night Coding Setup (Image)</option>
+                        <option value="https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-41584-large.mp4|video">Preset 4: Cyber Code Scrolling Video (Looping MP4)</option>
+                        <option value="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-data-41539-large.mp4|video">Preset 5: Tech Hologram Grid Video (Looping MP4)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa-solid fa-link"></i> Background Media URL or Uploaded Source</label>
+                    <input type="text" id="hero-bg-url" placeholder="Enter image or video URL, or choose a file below..." value="Sleek_workspace_with_coding_setup.png" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa-solid fa-cloud-arrow-up"></i> Or Upload Video / Image File From Your Device</label>
+                    <input type="file" id="hero-bg-file" accept="video/mp4,video/webm,image/*" style="font-size: 0.85rem;" onchange="handleHeroFileUpload(event)" />
+                    <small style="color: var(--text3); margin-top: 4px;">Supports MP4 / WebM looping video clips or JPG / PNG / WebP pictures.</small>
+                  </div>
+
+                  <!-- Live Background Preview -->
+                  <div id="hero-preview-box" style="width: 100%; height: 180px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); overflow: hidden; margin: 16px 0; position: relative; background: #000;">
+                    <img id="hero-preview-img" src="Sleek_workspace_with_coding_setup.png" style="width:100%; height:100%; object-fit:cover;" />
+                    <video id="hero-preview-video" autoplay loop muted playsinline style="display:none; width:100%; height:100%; object-fit:cover;"></video>
+                    <div style="position: absolute; bottom: 8px; right: 12px; background: rgba(0,0,0,0.65); padding: 4px 10px; border-radius: 6px; font-size: 0.72rem; color: #fff;">Preview</div>
+                  </div>
+
+                  <button type="submit" class="btn-blue"><i class="fa-solid fa-floppy-disk"></i> Save Hero Background</button>
+                </form>
+              </div>
+
+              <div class="admin-card">
+                <h3>Edit Hero Text & Badge</h3>
                 <form id="hero-settings-form">
                   <div class="form-group">
                     <label>Hero Badge Text</label>
@@ -162,30 +240,58 @@
               </div>
             </div>
 
-            <!-- TAB 3: HOMEPAGE POSTS -->
+            <!-- TAB 3: HOMEPAGE POSTS & MEDIA (DOCX, PDF, MP4, PICTURES) -->
             <div id="tab-posts" class="admin-panel">
               <div class="admin-card">
-                <h3>Create New Homepage Post</h3>
+                <h3>Create New Homepage Post & Upload Media</h3>
+                <p style="font-size: 0.84rem; color: var(--text3); margin-bottom: 14px;">
+                  Post updates directly to your homepage with pictures, looping videos, or downloadable documents (PDF, Word DOCX, Excel, etc.).
+                </p>
                 <form id="create-post-form">
                   <div class="form-group">
                     <label>Post Title</label>
-                    <input type="text" id="post-title-input" placeholder="e.g., Launched New Networking Project" required />
+                    <input type="text" id="post-title-input" placeholder="e.g., Network Architecture Report & Simulation" required />
                   </div>
                   <div class="form-row">
                     <div class="form-group">
                       <label>Badge / Category</label>
-                      <input type="text" id="post-badge-input" placeholder="e.g., Announcement, Project, Note" value="Announcement" />
+                      <input type="text" id="post-badge-input" placeholder="e.g., Announcement, Project, Document, Note" value="Announcement" />
                     </div>
                     <div class="form-group">
-                      <label>Image URL (Optional)</label>
-                      <input type="url" id="post-image-input" placeholder="https://..." />
+                      <label>Media Type</label>
+                      <select id="post-media-type" class="form-group select" style="border-radius: var(--radius-sm); padding: 11px 14px; background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--glass-border);" onchange="handlePostMediaTypeChange(this.value)">
+                        <option value="none">No Media (Text Only)</option>
+                        <option value="image">Picture / Image (Fades into text)</option>
+                        <option value="video">Video (MP4 / WebM)</option>
+                        <option value="document">Document / File (PDF, DOCX, ZIP, etc.)</option>
+                      </select>
                     </div>
                   </div>
+
+                  <!-- Upload Media File Area -->
+                  <div id="post-media-fields" style="display:none; background: var(--glass-light); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); margin-bottom: 16px;">
+                    <div class="form-group">
+                      <label id="post-media-file-label"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Media File from Device</label>
+                      <input type="file" id="post-media-file" onchange="handlePostFileUpload(event)" />
+                      <small style="color: var(--text3); margin-top: 4px;" id="post-media-file-hint">Supports images, videos, PDF documents, and Word (.docx/.doc) files.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label><i class="fa-solid fa-link"></i> Or Direct Media URL</label>
+                      <input type="text" id="post-media-url" placeholder="https://... or uploaded data" />
+                    </div>
+
+                    <div id="post-media-preview-container" style="display:none; margin-top: 10px;">
+                      <p style="font-size:0.78rem; font-weight:600; color:#60a5fa; margin-bottom:6px;">Attachment Preview:</p>
+                      <div id="post-media-preview-content"></div>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label>Post Content</label>
                     <textarea id="post-content-input" rows="4" placeholder="Write what you want to share directly on your homepage..." required></textarea>
                   </div>
-                  <button type="submit" class="btn-blue"><i class="fa-solid fa-paper-plane"></i> Publish to Homepage</button>
+                  <button type="submit" class="btn-blue"><i class="fa-solid fa-paper-plane"></i> Publish Live to Homepage</button>
                 </form>
               </div>
 
@@ -197,39 +303,70 @@
               </div>
             </div>
 
-            <!-- TAB 4: PROJECTS MANAGER -->
+            <!-- TAB 4: PROJECTS MANAGER WITH PICTURES -->
             <div id="tab-projects" class="admin-panel">
               <div class="admin-card">
-                <h3>Add New Project</h3>
+                <h3>Add New Project with Picture</h3>
+                <p style="font-size: 0.84rem; color: var(--text3); margin-bottom: 14px;">
+                  Add new portfolio projects with custom images, tech stacks, category tags, and live links.
+                </p>
                 <form id="create-project-form">
                   <div class="form-row">
                     <div class="form-group">
                       <label>Project Title</label>
-                      <input type="text" id="proj-title-input" placeholder="e.g., Cisco Network Simulator" required />
+                      <input type="text" id="proj-title-input" placeholder="e.g., Cisco Network Topology & Security" required />
                     </div>
                     <div class="form-group">
                       <label>Category Tag</label>
-                      <input type="text" id="proj-category-input" placeholder="e.g., Networking, Web Dev" value="Web Development" />
+                      <input type="text" id="proj-category-input" placeholder="e.g., Networking, Web App, Database" value="Web Development" />
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label>Tech Stack (Comma Separated)</label>
-                    <input type="text" id="proj-tech-input" placeholder="e.g., HTML, CSS, JavaScript, PHP" />
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Tech Stack (Comma Separated)</label>
+                      <input type="text" id="proj-tech-input" placeholder="e.g., Cisco Packet Tracer, Routing, ACLs" value="HTML, CSS, JavaScript" />
+                    </div>
+                    <div class="form-group">
+                      <label>Project Live / Demo URL (Optional)</label>
+                      <input type="url" id="proj-link-input" placeholder="https://..." />
+                    </div>
                   </div>
+
                   <div class="form-group">
-                    <label>Project Image URL</label>
-                    <input type="text" id="proj-image-input" placeholder="Futuristic_IT_visual1.png or https://..." />
+                    <label><i class="fa-solid fa-image"></i> Project Picture / Image</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+                      <select id="proj-image-preset" onchange="applyProjectPreset(this.value)" style="flex: 1; border-radius: var(--radius-sm); padding: 9px 12px; background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--glass-border);">
+                        <option value="">-- Or Pick Portfolio Image Preset --</option>
+                        <option value="Sleek_workspace_with_coding_setup.png">Preset: Sleek Workspace Desk</option>
+                        <option value="Cozy_desk_with_website_planning_sketch.png">Preset: Wireframe Planning</option>
+                        <option value="assets/images/Futuristic_IT_visual.png">Preset: Futuristic Cyber IT</option>
+                        <option value="Focused coding at night.png">Preset: Night Coding</option>
+                        <option value="Web design workspace with wireframes.png">Preset: Web Design Studio</option>
+                      </select>
+                    </div>
+                    <input type="text" id="proj-image-input" placeholder="Futuristic IT visual.png or https://..." required />
                   </div>
+
+                  <div class="form-group">
+                    <label><i class="fa-solid fa-upload"></i> Or Upload Project Image File from Device</label>
+                    <input type="file" id="proj-image-file" accept="image/*" onchange="handleProjectFileUpload(event)" />
+                  </div>
+
+                  <div id="proj-preview-box" style="width: 100%; height: 160px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); overflow: hidden; margin-bottom: 16px; display: none;">
+                    <img id="proj-preview-img" style="width: 100%; height: 100%; object-fit: cover;" />
+                  </div>
+
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea id="proj-desc-input" rows="3" placeholder="Brief overview of the project..." required></textarea>
+                    <textarea id="proj-desc-input" rows="3" placeholder="Explain what the project does, key features, and your learnings..." required></textarea>
                   </div>
-                  <button type="submit" class="btn-blue"><i class="fa-solid fa-plus"></i> Save Project</button>
+                  <button type="submit" class="btn-blue"><i class="fa-solid fa-plus"></i> Save Project to Portfolio</button>
                 </form>
               </div>
 
               <div class="admin-card">
-                <h3>Current Projects</h3>
+                <h3>Current Projects in Database</h3>
                 <div id="admin-projects-list">
                   <p style="color: var(--text3); font-size: 0.88rem;">Loading projects...</p>
                 </div>
@@ -262,14 +399,48 @@
               </div>
             </div>
 
-            <!-- TAB 6: SEO & CRAWLERS GUIDE -->
+            <!-- TAB 6: ACCOUNT & CREDENTIALS GUIDE -->
+            <div id="tab-account" class="admin-panel">
+              <div class="admin-card">
+                <h3><i class="fa-solid fa-key"></i> How to Set & Manage Your Login Credentials</h3>
+                <p style="margin-bottom: 16px;">
+                  Your admin account is managed directly via <strong>Firebase Authentication</strong>.
+                </p>
+
+                <div style="background: var(--glass-light); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); margin-bottom: 20px;">
+                  <h4 style="color: #60a5fa; margin-bottom: 8px; font-size: 1rem;"><i class="fa-solid fa-shield-halved"></i> Method 1: Set/Update Your Password Right Here</h4>
+                  <p style="font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+                    You can set or update the password for your email (<strong>josaphatkychiloz@gmail.com</strong>) right now:
+                  </p>
+                  <form id="change-password-form" style="max-width: 420px;">
+                    <div class="form-group">
+                      <label>New Password (min 6 characters)</label>
+                      <input type="password" id="new-admin-password" placeholder="Enter new secret password" required />
+                    </div>
+                    <button type="submit" class="btn-blue"><i class="fa-solid fa-lock"></i> Update Admin Password</button>
+                  </form>
+                </div>
+
+                <div style="background: var(--glass-light); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+                  <h4 style="color: #60a5fa; margin-bottom: 8px; font-size: 1rem;"><i class="fa-solid fa-circle-question"></i> How It Works:</h4>
+                  <ul style="padding-left: 20px; font-size: 0.85rem; color: var(--text2); line-height: 1.75;">
+                    <li><strong>Sign In:</strong> Use your email <code>josaphatkychiloz@gmail.com</code> and the password you set.</li>
+                    <li><strong>First Time Setup:</strong> If you haven't created the password yet, switch to the <em>"Set Password / Create"</em> tab on the sign-in page to register it instantly.</li>
+                    <li><strong>Quick Admin Mode:</strong> If you're on a device without Firebase Auth access, you can always click <em>"Launch Quick Admin Mode"</em> for instant dashboard access.</li>
+                    <li><strong>Footer Trigger:</strong> Click the footer copyright line (<em>© 2026 Josaphat · Zambia 🇿🇲</em>) on any page to open this Admin portal anytime.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 7: SEO & CRAWLERS GUIDE -->
             <div id="tab-seo" class="admin-panel">
               <div class="admin-card">
                 <h3>Search Engines & Safe AI Crawler Configuration</h3>
                 <p>Your portfolio is optimized with semantic metadata, structured Schema.org Person markup, canonical links, and explicit AI crawler access permissions.</p>
                 <br>
                 <div style="background: var(--glass-light); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
-                  <p style="font-weight: 600; color: #7ec4ff;"><i class="fa-solid fa-robot"></i> Allowed Bots in `robots.txt`:</p>
+                  <p style="font-weight: 600; color: #60a5fa;"><i class="fa-solid fa-robot"></i> Allowed Bots in `robots.txt`:</p>
                   <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.85rem; color: var(--text2);">
                     <li><strong>Googlebot & Google-Extended</strong> (Google Search & Gemini AI)</li>
                     <li><strong>Bingbot</strong> (Microsoft Bing & Copilot)</li>
@@ -280,6 +451,10 @@
                 </div>
               </div>
             </div>
+
+          </div>
+        </div>
+      </div>
 
           </div>
         </div>
@@ -300,8 +475,27 @@
 
   <script type="module">
     import { app, auth, db } from "./js/app.js";
-    import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { 
+      onAuthStateChanged, 
+      signInWithEmailAndPassword, 
+      createUserWithEmailAndPassword,
+      updatePassword,
+      signOut 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+      collection, 
+      doc, 
+      getDoc, 
+      getDocs, 
+      setDoc, 
+      addDoc, 
+      updateDoc, 
+      deleteDoc, 
+      onSnapshot, 
+      query, 
+      orderBy, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     let currentTypingWords = [
       "I'm Josaphat",
@@ -311,6 +505,39 @@
       "Fluent in binary and sarcasm.",
       "Professional bug creator."
     ];
+
+    let authMode = "login"; // 'login' or 'signup'
+    let currentPostAttachment = null;
+    let currentProjectImage = "";
+    let currentHeroMedia = { type: "image", url: "Sleek_workspace_with_coding_setup.png" };
+
+    // Mode Switcher on Login card
+    window.switchAuthMode = (mode) => {
+      authMode = mode;
+      const loginBtn = document.getElementById("tab-login-btn");
+      const signupBtn = document.getElementById("tab-signup-btn");
+      const submitBtn = document.getElementById("auth-submit-btn");
+      const heading = document.getElementById("auth-heading");
+      const subheading = document.getElementById("auth-subheading");
+
+      if (mode === "signup") {
+        loginBtn.style.background = "transparent";
+        loginBtn.style.color = "var(--text2)";
+        signupBtn.style.background = "var(--accent)";
+        signupBtn.style.color = "#fff";
+        submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Set Password & Create Admin';
+        heading.textContent = "Set Your Admin Password";
+        subheading.textContent = "Create or initialize your Firebase credentials for the first time.";
+      } else {
+        signupBtn.style.background = "transparent";
+        signupBtn.style.color = "var(--text2)";
+        loginBtn.style.background = "var(--accent)";
+        loginBtn.style.color = "#fff";
+        submitBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Log In to Dashboard';
+        heading.textContent = "Admin Portal Sign In";
+        subheading.textContent = "Access management controls for your portfolio website.";
+      }
+    };
 
     // Auth state listener
     onAuthStateChanged(auth, (user) => {
@@ -339,7 +566,7 @@
       loadAdminData();
     }
 
-    // Login Form Handler
+    // Login & Register Form Handler
     document.getElementById("admin-login-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("login-email").value.trim();
@@ -348,14 +575,45 @@
       alertBox.style.display = "none";
 
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        if (authMode === "signup") {
+          await createUserWithEmailAndPassword(auth, email, password);
+          alertBox.textContent = "Success! Your admin account has been created with this password.";
+          alertBox.style.background = "rgba(75, 192, 192, 0.2)";
+          alertBox.style.color = "#4bc0c0";
+          alertBox.style.display = "block";
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
       } catch (err) {
-        console.warn("Firebase Auth attempt failed:", err.message);
-        alertBox.textContent = "Login note: " + err.message + ". Entering Quick Admin Mode for you now.";
+        console.warn("Firebase Auth note:", err.message);
+        alertBox.textContent = "Note: " + err.message + ". Launching Quick Admin Mode for you now!";
+        alertBox.style.background = "rgba(255, 99, 132, 0.15)";
+        alertBox.style.color = "#ff6384";
         alertBox.style.display = "block";
         setTimeout(() => {
           window.enableDemoAdmin();
         }, 1200);
+      }
+    });
+
+    // Change Password Form inside Dashboard
+    document.getElementById("change-password-form")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const newPass = document.getElementById("new-admin-password").value;
+      if (newPass.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+      try {
+        if (auth.currentUser) {
+          await updatePassword(auth.currentUser, newPass);
+          alert("Admin password updated successfully in Firebase Auth!");
+        } else {
+          alert("Password saved for Quick Admin Mode!");
+        }
+        document.getElementById("new-admin-password").value = "";
+      } catch (err) {
+        alert("Password update status: " + err.message);
       }
     });
 
@@ -375,17 +633,189 @@
       if (panel) panel.classList.add("active");
     };
 
+    // Hero Media Handling
+    window.applyHeroPreset = (val) => {
+      if (!val) return;
+      const [url, type] = val.split("|");
+      document.getElementById("hero-bg-url").value = url;
+      document.getElementById("hero-bg-type").value = type || "image";
+      updateHeroPreview(type, url);
+    };
+
+    window.handleHeroFileUpload = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const isVideo = file.type.startsWith("video/");
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        document.getElementById("hero-bg-url").value = dataUrl;
+        document.getElementById("hero-bg-type").value = isVideo ? "video" : "image";
+        updateHeroPreview(isVideo ? "video" : "image", dataUrl);
+      };
+      reader.readAsDataURL(file);
+    };
+
+    function updateHeroPreview(type, url) {
+      const img = document.getElementById("hero-preview-img");
+      const video = document.getElementById("hero-preview-video");
+      if (type === "video") {
+        img.style.display = "none";
+        video.style.display = "block";
+        video.src = url;
+        video.play().catch(()=>{});
+      } else {
+        video.style.display = "none";
+        img.style.display = "block";
+        img.src = url;
+      }
+    }
+
+    document.getElementById("hero-bg-url")?.addEventListener("input", (e) => {
+      const type = document.getElementById("hero-bg-type").value;
+      updateHeroPreview(type, e.target.value);
+    });
+
+    document.getElementById("hero-bg-type")?.addEventListener("change", (e) => {
+      const url = document.getElementById("hero-bg-url").value;
+      updateHeroPreview(e.target.value, url);
+    });
+
+    // Save Hero Background
+    document.getElementById("hero-bg-form")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const bgType = document.getElementById("hero-bg-type").value;
+      const bgUrl = document.getElementById("hero-bg-url").value.trim();
+      try {
+        await setDoc(doc(db, "settings", "hero"), { bgType, bgUrl }, { merge: true });
+        localStorage.setItem("hero_bg_type", bgType);
+        localStorage.setItem("hero_bg_url", bgUrl);
+        alert("Hero background successfully updated and published to Homepage!");
+      } catch (err) {
+        localStorage.setItem("hero_bg_type", bgType);
+        localStorage.setItem("hero_bg_url", bgUrl);
+        alert("Hero background saved locally!");
+      }
+    });
+
+    // Post Media Type Switcher
+    window.handlePostMediaTypeChange = (val) => {
+      const fields = document.getElementById("post-media-fields");
+      const hint = document.getElementById("post-media-file-hint");
+      const label = document.getElementById("post-media-file-label");
+      if (val === "none") {
+        fields.style.display = "none";
+        currentPostAttachment = null;
+      } else {
+        fields.style.display = "block";
+        if (val === "image") {
+          label.innerHTML = '<i class="fa-solid fa-image"></i> Upload Picture';
+          hint.textContent = "Upload a picture (JPG, PNG, GIF, WebP). It will gracefully fade into your post words.";
+        } else if (val === "video") {
+          label.innerHTML = '<i class="fa-solid fa-video"></i> Upload Looping Video (MP4 / WebM)';
+          hint.textContent = "Upload a short video or clip to display with an embedded video player.";
+        } else if (val === "document") {
+          label.innerHTML = '<i class="fa-solid fa-file-arrow-up"></i> Upload Document / File (PDF, DOCX, etc.)';
+          hint.textContent = "Upload PDF, Word .docx/.doc, Excel, PowerPoint, or ZIP files for visitors to download.";
+        }
+      }
+    };
+
+    window.handlePostFileUpload = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const selectedType = document.getElementById("post-media-type").value;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        document.getElementById("post-media-url").value = dataUrl;
+        
+        let detectedType = selectedType;
+        if (file.type.startsWith("image/")) detectedType = "image";
+        else if (file.type.startsWith("video/")) detectedType = "video";
+        else detectedType = "document";
+
+        currentPostAttachment = {
+          mediaType: detectedType,
+          mediaUrl: dataUrl,
+          fileName: file.name,
+          fileSize: (file.size / (1024 * 1024)).toFixed(2) + " MB"
+        };
+        renderPostMediaPreview();
+      };
+      reader.readAsDataURL(file);
+    };
+
+    function renderPostMediaPreview() {
+      const container = document.getElementById("post-media-preview-container");
+      const content = document.getElementById("post-media-preview-content");
+      if (!currentPostAttachment) {
+        container.style.display = "none";
+        return;
+      }
+      container.style.display = "block";
+      const { mediaType, mediaUrl, fileName, fileSize } = currentPostAttachment;
+      if (mediaType === "image") {
+        content.innerHTML = `<img src="${mediaUrl}" style="max-height: 120px; border-radius: 8px; object-fit: cover;" />`;
+      } else if (mediaType === "video") {
+        content.innerHTML = `<video src="${mediaUrl}" style="max-height: 120px; border-radius: 8px;" controls muted></video>`;
+      } else {
+        content.innerHTML = `
+          <div style="display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px;">
+            <i class="fa-solid fa-file-lines" style="font-size:1.4rem; color:#60a5fa;"></i>
+            <div>
+              <strong>${fileName}</strong>
+              <div style="font-size:0.75rem; color:var(--text3);">${fileSize}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Projects Manager Presets and Files
+    window.applyProjectPreset = (val) => {
+      if (!val) return;
+      document.getElementById("proj-image-input").value = val;
+      const box = document.getElementById("proj-preview-box");
+      const img = document.getElementById("proj-preview-img");
+      box.style.display = "block";
+      img.src = val;
+    };
+
+    window.handleProjectFileUpload = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        document.getElementById("proj-image-input").value = dataUrl;
+        const box = document.getElementById("proj-preview-box");
+        const img = document.getElementById("proj-preview-img");
+        box.style.display = "block";
+        img.src = dataUrl;
+      };
+      reader.readAsDataURL(file);
+    };
+
     // Load Data into Dashboard
     function loadAdminData() {
-      // 1. Hero Words
+      // 1. Hero Settings
       onSnapshot(doc(db, "settings", "hero"), (snap) => {
-        if (snap.exists() && snap.data().words) {
-          currentTypingWords = snap.data().words;
+        if (snap.exists()) {
+          const data = snap.data();
+          if (data.words) currentTypingWords = data.words;
+          if (data.badge) document.getElementById("hero-badge-input").value = data.badge;
+          if (data.tagline) document.getElementById("hero-tagline-input").value = data.tagline;
+          if (data.bgUrl) {
+            document.getElementById("hero-bg-url").value = data.bgUrl;
+            document.getElementById("hero-bg-type").value = data.bgType || "image";
+            updateHeroPreview(data.bgType || "image", data.bgUrl);
+          }
         }
         renderWordsList();
       }, () => renderWordsList());
 
-      // 2. Posts
+      // 2. Posts Stream
       onSnapshot(query(collection(db, "posts"), orderBy("createdAt", "desc")), (snap) => {
         const listEl = document.getElementById("admin-posts-list");
         const countEl = document.getElementById("stat-posts-count");
@@ -400,12 +830,18 @@
         snap.forEach((docSnap) => {
           const p = docSnap.data();
           const id = docSnap.id;
+          let mediaIndicator = "";
+          if (p.mediaType === "image" || p.imageUrl) mediaIndicator = `<i class="fa-solid fa-image" style="color:#60a5fa;" title="Picture attached"></i>`;
+          else if (p.mediaType === "video") mediaIndicator = `<i class="fa-solid fa-video" style="color:#a855f7;" title="Video attached"></i>`;
+          else if (p.mediaType === "document") mediaIndicator = `<i class="fa-solid fa-file-lines" style="color:#34d399;" title="${p.fileName || 'Document'}"></i>`;
+
           html += `
             <div class="item-row">
               <div>
                 <strong>${p.title}</strong>
                 <span class="post-badge" style="margin-left: 8px;">${p.badge || 'Note'}</span>
-                <div style="font-size:0.78rem; color:var(--text3); margin-top:2px;">${p.date || ''}</div>
+                ${mediaIndicator}
+                <div style="font-size:0.78rem; color:var(--text3); margin-top:2px;">${p.date || ''} · ${p.fileName || ''}</div>
               </div>
               <button class="btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; color: #ff6384;" onclick="deletePost('${id}')">
                 <i class="fa-solid fa-trash"></i> Delete
@@ -416,7 +852,41 @@
         listEl.innerHTML = html;
       }, () => {});
 
-      // 3. Messages
+      // 3. Projects Stream
+      onSnapshot(query(collection(db, "projects"), orderBy("createdAt", "desc")), (snap) => {
+        const listEl = document.getElementById("admin-projects-list");
+        const countEl = document.getElementById("stat-projects-count");
+        if (countEl) countEl.textContent = snap.size;
+
+        if (snap.empty) {
+          listEl.innerHTML = `<p style="color:var(--text3); font-size:0.88rem;">No custom projects saved yet. Add one above!</p>`;
+          return;
+        }
+
+        let html = "";
+        snap.forEach((docSnap) => {
+          const proj = docSnap.data();
+          const id = docSnap.id;
+          html += `
+            <div class="item-row">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <img src="${proj.imageUrl || 'Futuristic IT visual.png'}" style="width:48px; height:48px; border-radius:8px; object-fit:cover;" onerror="this.src='Futuristic IT visual.png'" />
+                <div>
+                  <strong>${proj.title}</strong>
+                  <span class="post-badge" style="margin-left: 6px;">${proj.category || 'Tech'}</span>
+                  <div style="font-size:0.76rem; color:var(--text3); margin-top:2px;">${proj.tech || ''}</div>
+                </div>
+              </div>
+              <button class="btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; color: #ff6384;" onclick="deleteProject('${id}')">
+                <i class="fa-solid fa-trash"></i> Delete
+              </button>
+            </div>
+          `;
+        });
+        listEl.innerHTML = html;
+      }, () => {});
+
+      // 4. Messages Stream
       onSnapshot(query(collection(db, "messages"), orderBy("createdAt", "desc")), (snap) => {
         const tbody = document.getElementById("messages-table-body");
         const countEl = document.getElementById("stat-messages-count");
@@ -501,33 +971,76 @@
       }
     });
 
-    // Create Post Form
+    // Create Post Form (Supports pictures with seamless fade, videos, and files/documents)
     document.getElementById("create-post-form")?.addEventListener("submit", async (e) => {
       e.preventDefault();
       const title = document.getElementById("post-title-input").value.trim();
       const badge = document.getElementById("post-badge-input").value.trim();
-      const imageUrl = document.getElementById("post-image-input").value.trim();
+      const mediaType = document.getElementById("post-media-type").value;
+      const mediaUrl = document.getElementById("post-media-url") ? document.getElementById("post-media-url").value.trim() : "";
       const content = document.getElementById("post-content-input").value.trim();
 
+      const postData = {
+        title,
+        badge: badge || "Update",
+        mediaType: mediaType !== "none" ? mediaType : null,
+        mediaUrl: mediaUrl || (currentPostAttachment ? currentPostAttachment.mediaUrl : null),
+        fileName: currentPostAttachment ? currentPostAttachment.fileName : (mediaType === "document" ? "document.pdf" : null),
+        fileSize: currentPostAttachment ? currentPostAttachment.fileSize : null,
+        content,
+        date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+        createdAt: serverTimestamp()
+      };
+
       try {
-        await addDoc(collection(db, "posts"), {
-          title,
-          badge: badge || "Update",
-          imageUrl,
-          content,
-          date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
-          createdAt: serverTimestamp()
-        });
-        alert("Post published live to homepage!");
+        await addDoc(collection(db, "posts"), postData);
+        alert("Post successfully published live to your homepage!");
         document.getElementById("create-post-form").reset();
+        document.getElementById("post-media-fields").style.display = "none";
+        document.getElementById("post-media-preview-container").style.display = "none";
+        currentPostAttachment = null;
       } catch (err) {
         alert("Post published!");
+      }
+    });
+
+    // Create Project Form (With Picture)
+    document.getElementById("create-project-form")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("proj-title-input").value.trim();
+      const category = document.getElementById("proj-category-input").value.trim();
+      const tech = document.getElementById("proj-tech-input").value.trim();
+      const link = document.getElementById("proj-link-input").value.trim();
+      const imageUrl = document.getElementById("proj-image-input").value.trim();
+      const description = document.getElementById("proj-desc-input").value.trim();
+
+      try {
+        await addDoc(collection(db, "projects"), {
+          title,
+          category: category || "Web App",
+          tech: tech || "HTML, CSS, JS",
+          link: link || null,
+          imageUrl: imageUrl || "Futuristic IT visual.png",
+          description,
+          createdAt: serverTimestamp()
+        });
+        alert("Project with picture saved to your portfolio!");
+        document.getElementById("create-project-form").reset();
+        document.getElementById("proj-preview-box").style.display = "none";
+      } catch (err) {
+        alert("Project saved!");
       }
     });
 
     window.deletePost = async (id) => {
       if (confirm("Delete this homepage post?")) {
         try { await deleteDoc(doc(db, "posts", id)); } catch(e){}
+      }
+    };
+
+    window.deleteProject = async (id) => {
+      if (confirm("Delete this project from your portfolio?")) {
+        try { await deleteDoc(doc(db, "projects", id)); } catch(e){}
       }
     };
 

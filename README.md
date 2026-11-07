@@ -1,20 +1,24 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# josaphatchilokoto.space
 
-# Run and deploy your AI Studio app
+Static site on Firebase Hosting + Firestore. No build step.
 
-This contains everything you need to run your app locally.
+## Deploy
+```
+firebase login
+firebase deploy            # hosting + firestore rules
+```
 
-View your app in AI Studio: https://ai.studio/apps/9c8a6bcf-8561-4ddb-bd28-dc1ace2e5087
+## One-time setup in the Firebase console
+1. Authentication → Sign-in method: keep **Email/Password** on (optionally add **Google**). Add `josaphatchilokoto.space` under Authorized domains.
+2. Authentication → Settings → User actions: turn **off** "Enable create (sign-up)".
+3. Open `/admin`, sign in, press "Send verification email", open the link, then "I've verified".
+   (Firestore rules only accept writes from the *verified* owner email.)
 
-## Run Locally
+## Structure
+- `public/` the website (HTML, `css/site.css`, `js/`, `assets/`)
+- `firestore.rules` security rules (admin-only writes, validated public contact form)
+- `firebase.json` hosting config: clean URLs, CSP + security headers, caching
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Editing projects
+Built-in projects live in `public/projects.html`. Copy a `<article class="card card-hover proj ...">` block.
+Statuses: `live`, `delivered`, `building` (unfinished). Extra ones can be added from `/admin`.

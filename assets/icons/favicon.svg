@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b132b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <linearGradient id="favBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#80b3ff" />
+      <stop offset="25%" stop-color="#3b82f6" />
+      <stop offset="55%" stop-color="#1d4ed8" />
+      <stop offset="85%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#0e2254" />
+    </linearGradient>
+
+    <linearGradient id="favHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#93c5fd" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.0" />
+    </linearGradient>
+
+    <linearGradient id="favDarkOutline" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0b1736" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#favBg)" stroke="#2563eb" stroke-width="2" />
+
+  <!-- Center 'J' Emblem with Traces & Tech Dot -->
+  <g transform="translate(14, 18) scale(0.92)">
+    <!-- Left slanted tab -->
+    <path d="M 6 56 L 24 38 L 40 38 L 22 56 Z" fill="url(#favBodyGrad)" stroke="url(#favDarkOutline)" stroke-width="1.6" />
+
+    <!-- Main 'J' Stem & Base Curve -->
+    <path d="M 28 18 H 68 C 68 18 56 28 54 30 V 50 C 54 62 42 66 26 66 C 14 66 8 58 12 50 L 22 50 C 20 54 22 57 28 57 C 36 57 42 54 42 48 V 32 L 28 18 Z" 
+          fill="url(#favBodyGrad)" stroke="url(#favDarkOutline)" stroke-width="1.8" />
+    
+    <path d="M 30 20 H 64 C 64 20 54 28 52 30 V 48 C 52 58 40 62 26 62" 
+          fill="none" stroke="url(#favHighlightGrad)" stroke-width="1.5" />
+
+    <!-- Diagonal Circuit Traces & Node Circles -->
+    <path d="M 52 34 L 78 18" stroke="url(#favDarkOutline)" stroke-width="3" stroke-linecap="round" />
+    <circle cx="80" cy="17" r="4.5" fill="url(#favBodyGrad)" stroke="url(#favDarkOutline)" stroke-width="1.8" />
+    <circle cx="80" cy="17" r="2" fill="#38bdf8" />
+
+    <path d="M 58 26 L 86 10" stroke="url(#favDarkOutline)" stroke-width="3" stroke-linecap="round" />
+    <circle cx="88" cy="9" r="4.5" fill="url(#favBodyGrad)" stroke="url(#favDarkOutline)" stroke-width="1.8" />
+    <circle cx="88" cy="9" r="2" fill="#38bdf8" />
+
+    <!-- Glowing Tech Dot -->
+    <circle cx="98" cy="52" r="9" fill="#38bdf8" />
+    <circle cx="98" cy="52" r="5" fill="#ffffff" opacity="0.8" />
+  </g>
+</svg>

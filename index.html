@@ -16,6 +16,16 @@
   <!-- Canonical tag to enforce your new custom domain authority -->
   <link rel="canonical" href="https://josaphatchilokoto.space/" />
   
+  <!-- Favicon & Search Engine Brand Logo -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#050814" />
+  <meta property="og:image" content="https://josaphatchilokoto.space/assets/icons/android-chrome-512x512.png" />
+  <meta name="twitter:image" content="https://josaphatchilokoto.space/assets/icons/android-chrome-512x512.png" />
+  
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,13 +46,18 @@
     "knowsAbout": ["Web Development", "Cybersecurity", "Networking", "HTML", "CSS", "JavaScript", "PHP"]
   }
   </script>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head> 
 <body>
 
   <nav>
-    <a class="nav-logo" href="index.html">Josaphat<span>.</span></a>
+    <a class="nav-logo" href="index.html" aria-label="Josaphat Home">
+      <div class="logo-wrapper">
+        <img class="josaphat-brand-logo" src="assets/images/Josaphat_Logo.png" alt="Josaphat Logo" />
+        <canvas class="logo-drip-canvas"></canvas>
+      </div>
+    </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
@@ -139,7 +154,7 @@
       <div class="home-section-sub">A little bit about who I am</div>
     </div>
     <div class="about-teaser reveal">
-      <img src="WhatsApp Image 2026-03-30 at 5.50.55 PM.jpeg" alt="Josaphat" onerror="this.style.display='none'" />
+      <img src="assets/images/josaphat_profile.jpeg" alt="Josaphat" onerror="this.style.display='none'" />
       <div>
         <h3>Josaphat Chilokoto</h3>
         <p>
