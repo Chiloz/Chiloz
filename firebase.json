@@ -3,6 +3,11 @@
     "public": "public",
     "cleanUrls": true,
     "trailingSlash": false,
+    "redirects": [
+      { "source": "/assets/images/josaphat-cap.webp", "destination": "/assets/images/josaphat-chilokoto.webp", "type": 301 },
+      { "source": "/assets/images/josaphat-phone.webp", "destination": "/assets/images/josaphat-chilokoto-2.webp", "type": 301 },
+      { "source": "/assets/icons/favicon-:size.png", "destination": "/assets/icons/jkc-favicon-48.png", "type": 301 }
+    ],
     "ignore": ["firebase.json", "**/node_modules/**"],
     "headers": [
       {

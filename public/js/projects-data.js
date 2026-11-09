@@ -1,0 +1,32 @@
+/* Built-in projects. They are shown on the site until you open the admin panel for the first time:
+   at that moment they are copied into Firestore (once) so you can edit, re-order or delete every one of them. */
+export const SEED_VERSION = 1;
+export const DEFAULT_PROJECTS = [
+  { id: "penguin-view", order: 10, title: "Penguin View", status: "live", category: "Web app · Real-time",
+    tech: "JavaScript, TypeScript, Firebase, Realtime sync", link: "https://penguin-view-sync.web.app", imageUrl: "assets/covers/penguin-view.webp",
+    description: "Watch videos in sync with friends. Real-time playback sync, local-file playback and built-in chat, wrapped in an iOS-style liquid-glass interface." },
+  { id: "bunny-gym-record", order: 20, title: "Bunny's Gym Record", status: "live", category: "Web app · Mobile-first",
+    tech: "JavaScript, Firebase, Firestore", link: "https://bunny-gym-tracker.web.app", imageUrl: "assets/covers/bunny-gym.webp",
+    description: "A mobile-first gym tracker for logging workouts and following progress over time, backed by Firebase Firestore." },
+  { id: "smeconnect", order: 30, title: "SMEConnect · Cosmetology Expo Zambia 2026", status: "live", category: "Group project · Event website",
+    tech: "HTML, CSS, JavaScript, Team of 4, Responsive", link: "https://www.smedconnect.com/", imageUrl: "assets/covers/smeconnect.webp",
+    description: "Event website for the Cosmetology Expo and MSME Finance Fair held at ZCAS University, Lusaka: gallery, category highlights, exhibitors and community partners. Built as a team of four developers and credited in the site footer." },
+  { id: "busaka-enviroworks", order: 40, title: "Busaka Enviroworks", status: "delivered", category: "Client website",
+    tech: "Node.js, Tailwind CSS, JavaScript, Responsive", link: "", imageUrl: "assets/covers/busaka.webp",
+    description: "Multi-page, mobile-first website for a Zambian environmental, engineering and technology consultancy based in Ndola. Submitted and delivered." },
+  { id: "zelo-foods", order: 50, title: "Zelo Foods", status: "delivered", category: "Client website",
+    tech: "Tailwind CSS, JavaScript, Responsive", link: "", imageUrl: "assets/covers/zelo-foods.webp",
+    description: "Multi-page, mobile-first site for a Lusaka agro-processor: Tasty cassava porridge, kapenta and ntwilo, styled from the brand's own colours. Submitted and delivered." },
+  { id: "lifecycle-organics", order: 60, title: "Lifecycle Organics", status: "delivered", category: "Client website",
+    tech: "JavaScript, Responsive, Deployment", link: "", imageUrl: "assets/covers/lifecycle-organics.webp",
+    description: "Website for an ecological-agriculture company, deployed for the client and handed over. Submitted and delivered." },
+  { id: "bushemi-care", order: 70, title: "Bushemi Care", status: "delivered", category: "App design",
+    tech: "UI design, HTML, Prototype", link: "", imageUrl: "assets/covers/bushemi-care.webp",
+    description: "Home-care mobile app design for Bushemi Clinic in Lusaka, delivered as clickable design previews. Submitted and delivered." },
+  { id: "penguins-world", order: 80, title: "Penguin's World", status: "delivered", category: "3D · WebGL",
+    tech: "Three.js, WebGL, JavaScript", link: "", imageUrl: "assets/covers/penguins-world.webp",
+    description: "An explorable 3D world in Three.js: instanced grass terrain, a day-and-night cycle, a two-storey villa and playable characters. Submitted." },
+  { id: "jokachi-bakes", order: 90, title: "JOKACHI Bakes", status: "delivered", category: "eCommerce · PHP",
+    tech: "PHP, MySQL, XAMPP", link: "", imageUrl: "assets/covers/jokachi-bakes.webp",
+    description: "Bakery shop with a live custom-cake builder, time-slot pickup at checkout and dietary filters (vegan, gluten-free, nut-free). Submitted as coursework." },
+];

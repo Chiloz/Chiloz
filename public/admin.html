@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin | Josaphat Chilokoto</title>
 <meta name="robots" content="noindex, nofollow, noarchive"><meta name="theme-color" content="#060a16">
-<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/jkc-favicon-48.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/jkc-favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/jkc-favicon-192.png?v=3">
 <script src="js/theme.js"></script>
 <link rel="stylesheet" href="css/site.css"><link rel="stylesheet" href="css/admin.css">
 </head>
@@ -19,14 +19,14 @@
   <div class="page-head"><span class="eyebrow">Admin</span><h1>Control panel</h1><p>Manage posts, projects and messages. Everything is protected by Firebase Auth and Firestore security rules.</p></div>
 
   <section id="auth" class="card auth-card" hidden>
-    <div class="card-icon"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-lock"/></svg></div><h2>Sign in</h2><p>Only the site owner can sign in here.</p>
+    <div class="card-icon"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-lock"/></svg></div><h2>Owner sign in</h2><p>Only the site owner can sign in here.</p>
     <div class="alert bad" id="auth-bad" role="alert" hidden><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-triangle-exclamation"/></svg><span></span></div>
     <div class="alert ok" id="auth-ok" role="status" hidden><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-circle-check"/></svg><span></span></div>
     <form id="login-form" novalidate>
-      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
       <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
       <button class="btn btn-primary btn-block" type="submit" id="login-btn"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-right-to-bracket"/></svg> Sign in</button>
-      <p class="hint"><button type="button" class="link-btn" id="reset-btn">Forgot password?</button></p>
+      <p class="hint"><button type="button" class="link-btn" id="reset-btn">Forgot password? Email me a reset link</button></p>
     </form>
     <div class="divider">or</div>
     <button class="btn btn-ghost btn-block" id="google-btn" type="button">Continue with Google</button>
@@ -44,7 +44,7 @@
     <div>
       <div class="panel" id="p-overview" role="tabpanel" aria-labelledby="t-overview">
         <div class="card"><h3>Welcome back, Josaphat 👋</h3><p class="lead">Changes publish instantly to the live site.</p></div>
-        <div class="stat-row"><div class="card stat"><b id="n-posts">0</b><span>Posts</span></div><div class="card stat"><b id="n-projects">0</b><span>Extra projects</span></div><div class="card stat"><b id="n-messages">0</b><span>Messages</span></div><div class="card stat"><b id="n-unread">0</b><span>Unread</span></div></div>
+        <div class="stat-row"><div class="card stat"><b id="n-posts">0</b><span>Posts</span></div><div class="card stat"><b id="n-projects">0</b><span>Projects</span></div><div class="card stat"><b id="n-messages">0</b><span>Messages</span></div><div class="card stat"><b id="n-unread">0</b><span>Unread</span></div></div>
         <div class="card"><h3>Quick actions</h3><div class="hero-actions"><button class="btn btn-primary btn-sm" data-goto="posts"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg> New post</button><button class="btn btn-ghost btn-sm" data-goto="projects"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-folder-plus"/></svg> Add project</button><button class="btn btn-ghost btn-sm" data-goto="messages"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-inbox"/></svg> Open inbox</button></div></div>
       </div>
 
@@ -70,14 +70,14 @@
       </div>
 
       <div class="panel" id="p-projects" role="tabpanel" aria-labelledby="t-projects" hidden>
-        <div class="card"><h3>Add a project</h3><p class="lead">These appear on the Projects page after the built-in ones. Mark unfinished work as <strong>In progress</strong>.</p>
-          <form id="proj-form"><div class="field-row"><div class="field"><label for="j-title">Title</label><input id="j-title" maxlength="120" required></div><div class="field"><label for="j-status">Status</label><select id="j-status"><option value="live">Live</option><option value="delivered">Delivered</option><option value="building">In progress (unfinished)</option></select></div></div>
+        <div class="card" id="proj-card"><h3 id="proj-title-h">Add a project</h3><p class="lead" id="proj-lead">Projects appear on the Projects page in the order shown below. Use the picture box to add a preview image.</p>
+          <form id="proj-form"><div class="field-row"><div class="field"><label for="j-title">Title</label><input id="j-title" maxlength="120" required></div><div class="field"><label for="j-status">Status</label><select id="j-status"><option value="live">Online</option><option value="delivered">Delivered / submitted</option><option value="building">In progress (unfinished)</option></select></div></div>
           <div class="field-row"><div class="field"><label for="j-cat">Category</label><input id="j-cat" maxlength="40" value="Web app"></div><div class="field"><label for="j-tech">Tech (comma separated)</label><input id="j-tech" maxlength="200" value="HTML, CSS, JavaScript"></div></div>
-          <div class="field"><label for="j-link">Live link</label><input id="j-link" type="url" placeholder="https://…" maxlength="300"></div>
-          <div class="field"><label for="j-file">Cover picture (optional)</label><input id="j-file" type="file" accept="image/*"><img class="preview" id="j-preview" alt="" hidden></div>
+          <div class="field-row"><div class="field"><label for="j-link">Project link (optional)</label><input id="j-link" type="url" placeholder="https://…" maxlength="300"></div><div class="field"><label for="j-order">Position (small number = first)</label><input id="j-order" type="number" min="0" max="9999" placeholder="auto"></div></div>
+          <div class="field"><label for="j-file">Preview picture</label><input id="j-file" type="file" accept="image/*"><p class="hint">A screenshot of the project works best (16:9 looks perfect). It is resized automatically.</p><img class="preview" id="j-preview" alt="" hidden><div><button class="btn btn-ghost btn-sm" type="button" id="j-clear" hidden>Remove picture</button></div></div>
           <div class="field"><label for="j-desc">Description</label><textarea id="j-desc" rows="3" maxlength="600" required></textarea></div>
-          <button class="btn btn-primary" type="submit"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg> Save project</button></form></div>
-        <div class="card"><h3>Extra projects</h3><div id="proj-list"><p class="lead">Loading…</p></div></div>
+          <div class="hero-actions"><button class="btn btn-primary" type="submit" id="j-submit"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg> <span>Save project</span></button><button class="btn btn-ghost" type="button" id="j-cancel" hidden>Cancel editing</button></div></form></div>
+        <div class="card"><h3>All projects</h3><div id="proj-list"><p class="lead">Loading…</p></div></div>
       </div>
 
       <div class="panel" id="p-messages" role="tabpanel" aria-labelledby="t-messages" hidden>
@@ -85,7 +85,13 @@
       </div>
 
       <div class="panel" id="p-security" role="tabpanel" aria-labelledby="t-security" hidden>
-        <div class="card"><h3>Change password</h3><form id="pw-form"><div class="field"><label for="new-pw">New password (min 10 characters)</label><input id="new-pw" type="password" autocomplete="new-password" minlength="10" required></div><div class="alert bad" id="pw-bad" role="alert" hidden><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-triangle-exclamation"/></svg><span></span></div><button class="btn btn-primary" type="submit"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-key"/></svg> Update password</button></form></div>
+        <div class="card"><h3>Change password</h3><p class="lead">Do this straight away if you think someone knows your password. Other devices are signed out within about an hour.</p>
+          <form id="pw-form" autocomplete="off"><input type="text" id="pw-user" autocomplete="username" hidden aria-hidden="true" tabindex="-1">
+            <div class="field"><label for="cur-pw">Current password</label><input id="cur-pw" type="password" autocomplete="current-password" required></div>
+            <div class="field"><label for="new-pw">New password (min 10 characters)</label><input id="new-pw" type="password" autocomplete="new-password" minlength="10" required><p class="hint" id="pw-strength">Use a phrase: several words, a number and a symbol.</p></div>
+            <div class="field"><label for="new-pw2">Repeat new password</label><input id="new-pw2" type="password" autocomplete="new-password" minlength="10" required></div>
+            <div class="alert bad" id="pw-bad" role="alert" hidden><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-triangle-exclamation"/></svg><span></span></div>
+            <div class="hero-actions"><button class="btn btn-primary" type="submit"><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-key"/></svg> Update password</button><button class="btn btn-ghost" type="button" id="pw-reset">Forgot it? Email me a reset link</button></div></form></div>
         <div class="card"><h3>Security checklist</h3><ul class="checklist">
           <li><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg><span>Only your verified email can write to the database (enforced in <code>firestore.rules</code>).</span></li>
           <li><svg class="icon " aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg><span>Anyone can send you a message, but only with valid, size-limited fields. Nobody but you can read them.</span></li>

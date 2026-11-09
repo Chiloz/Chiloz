@@ -43,30 +43,36 @@ function postCard(p) {
       el("h3", { text: title }), el("p", { text: clip(p.content, 4000) }), doc));
 }
 
-/* ---------- Projects page: extra projects added from the admin ---------- */
-const STATUS = { live: "Live", building: "In progress", delivered: "Delivered" };
+/* ---------- Projects: Firestore is the source of truth once seeded; built-in data is the fallback ---------- */
+const STATUS = { live: "Online", building: "In progress", delivered: "Delivered" };
+const TONES = { live: "tone-blue", delivered: "tone-cyan", building: "tone-orange" };
+const byOrder = (a, b) => (a.order ?? 1000) - (b.order ?? 1000) || (b.createdAt?.seconds ?? 0) - (a.createdAt?.seconds ?? 0);
 async function initProjects() {
-  const host = $("#dyn-projects"); if (!host) return;
-  let fb; try { fb = await loadFirebase(); } catch { return; }
+  const grid = $("#grid"), featured = $("#featured-grid"); if (!grid && !featured) return;
+  let fb; try { fb = await loadFirebase(); } catch { return; } // offline/blocked: the static cards stay
   const { db, fs } = fb;
-  fs.onSnapshot(fs.query(fs.collection(db, "projects"), fs.orderBy("createdAt", "desc"), fs.limit(30)), (snap) => {
-    host.replaceChildren(...snap.docs.map((d) => projectCard(d.data())));
-    observeReveal(host); window.refreshFilters?.();
+  fs.onSnapshot(fs.query(fs.collection(db, "projects"), fs.limit(60)), (snap) => {
+    if (snap.empty) return; // not seeded yet: keep fallback cards
+    const list = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort(byOrder);
+    if (grid) { grid.replaceChildren(...list.map(projectCard)); observeReveal(grid); window.refreshFilters?.(); }
+    if (featured) { featured.replaceChildren(...list.slice(0, 3).map(projectCard)); observeReveal(featured); }
   }, () => {});
 }
-function projectCard(p) {
+export function projectCard(p) {
   const status = STATUS[p.status] ? p.status : "live";
   const link = safeUrl(p.link || ""), img = safeUrl(p.imageUrl || "", { image: true });
   const tags = clip(p.tech, 200).split(",").map((t) => t.trim()).filter(Boolean).slice(0, 8);
+  const badge = el("span", { class: `status ${status}`, text: STATUS[status] });
   const cover = img
-    ? el("div", { class: "cover tone-slate" }, el("img", { src: img, alt: "", loading: "lazy", class: "cover-img" }), el("span", { class: `status ${status}`, text: STATUS[status] }))
-    : el("div", { class: "cover tone-blue" }, icon("code"), el("span", { class: `status ${status}`, text: STATUS[status] }));
+    ? el("div", { class: "cover tone-slate" }, el("img", { src: img, alt: `${clip(p.title, 120)} preview`, loading: "lazy", class: "cover-img", width: 800, height: 450 }), badge)
+    : el("div", { class: `cover ${TONES[status]}` }, icon("code"), badge);
+  const foot = link && status !== "building"
+    ? el("a", { class: "btn btn-primary btn-sm", href: link, target: "_blank", rel: "noopener noreferrer" }, "Visit site ", icon("arrow-up-right-from-square"))
+    : status === "building" ? el("span", { class: "note" }, icon("hammer"), "Unfinished: still being built") : el("span", { class: "note" }, icon("lock"), "Private work · no public link");
   return el("article", { class: `card card-hover proj reveal${status === "building" ? " unfinished" : ""}`, dataset: { status } }, cover,
     el("div", { class: "proj-body" },
       el("div", { class: "proj-kind", text: clip(p.category, 40) || "Project" }), el("h3", { text: clip(p.title, 120) }), el("p", { text: clip(p.description, 600) }),
-      el("div", { class: "tags" }, tags.map((t) => el("span", { class: "tag", text: t }))),
-      el("div", { class: "proj-foot" }, link && status !== "building" ? el("a", { class: "btn btn-primary btn-sm", href: link, target: "_blank", rel: "noopener noreferrer" }, "Visit live ", icon("arrow-up-right-from-square")) : null,
-        status === "building" ? el("span", { class: "note" }, icon("hammer"), "Unfinished: still being built") : null)));
+      el("div", { class: "tags" }, tags.map((t) => el("span", { class: "tag", text: t }))), el("div", { class: "proj-foot" }, foot)));
 }
 
 /* ---------- Contact form ---------- */

@@ -10,6 +10,13 @@ service cloud.firestore {
           && request.auth.token.email == 'josaphatkychiloz@gmail.com';
     }
     function str(v, max) { return v is string && v.size() <= max; }
+    function optStr(d, k, max) { return !(k in d) || d[k] == null || str(d[k], max); }
+    function okProject(d) {
+      return str(d.title, 120) && str(d.description, 600)
+          && optStr(d, 'category', 40) && optStr(d, 'tech', 200) && optStr(d, 'link', 300) && optStr(d, 'imageUrl', 900000)
+          && (!('status' in d) || d.status in ['live', 'delivered', 'building'])
+          && (!('order' in d) || d.order is number);
+    }
 
     // Default deny
     match /{document=**} { allow read, write: if false; }
@@ -27,10 +34,10 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Projects added from the admin panel
+    // Projects (built-in ones are copied here on the first admin visit so they are editable)
     match /projects/{id} {
       allow read: if true;
-      allow create, update: if isAdmin() && str(request.resource.data.title, 120) && str(request.resource.data.description, 600);
+      allow create, update: if isAdmin() && okProject(request.resource.data);
       allow delete: if isAdmin();
     }
 

@@ -2,4 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /admin
+
 Sitemap: https://josaphatchilokoto.space/sitemap.xml
