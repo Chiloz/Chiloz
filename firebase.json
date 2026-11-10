@@ -3,6 +3,9 @@
     "public": "public",
     "cleanUrls": true,
     "trailingSlash": false,
+    "rewrites": [
+      { "source": "/api/chat", "function": { "functionId": "chat", "region": "us-central1" } }
+    ],
     "redirects": [
       { "source": "/assets/images/josaphat-cap.webp", "destination": "/assets/images/josaphat-chilokoto.webp", "type": 301 },
       { "source": "/assets/images/josaphat-phone.webp", "destination": "/assets/images/josaphat-chilokoto-2.webp", "type": 301 },
@@ -29,5 +32,6 @@
       { "source": "/admin", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }, { "key": "Cache-Control", "value": "no-store" }] }
     ]
   },
+  "functions": [{ "source": "functions", "codebase": "default", "runtime": "nodejs20", "ignore": ["node_modules", ".git", "*.log"] }],
   "firestore": { "rules": "firestore.rules", "indexes": "firestore.indexes.json" }
 }
