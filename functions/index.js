@@ -1,14 +1,14 @@
 /* Josaphat Chilokoto · site assistant backend.
    POST /api/chat  { messages: [{role:"user"|"assistant", content:"..."}] }  ->  { reply: "..." }
-   The API key lives in Firebase Secret Manager (ANTHROPIC_API_KEY) and never reaches the browser. */
+   The API key lives in Firebase Secret Manager (GEMINI_API_KEY) and never reaches the browser. */
 const { onRequest } = require("firebase-functions/v2/https");
 const { defineSecret } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
 
-const ANTHROPIC_API_KEY = defineSecret("ANTHROPIC_API_KEY");
+const GEMINI_API_KEY = defineSecret("GEMINI_API_KEY");
 
-const MODEL = "claude-haiku-5-5";          // fast + cheap, ideal for FAQ chat
-const MAX_TOKENS = 450;
+const MODEL = "gemini-2.5-flash";          // free-tier friendly; change here if you want another Gemini model
+const MAX_TOKENS = 600;
 const MAX_TURNS = 8;                        // last N messages sent to the model
 const MAX_MSG_CHARS = 500;
 const ALLOWED_ORIGINS = new Set([
@@ -74,7 +74,7 @@ function clean(messages) {
 }
 
 exports.chat = onRequest(
-  { secrets: [ANTHROPIC_API_KEY], region: "us-central1", maxInstances: 3, memory: "256MiB", timeoutSeconds: 30, cors: false },
+  { secrets: [GEMINI_API_KEY], region: "us-central1", maxInstances: 3, memory: "256MiB", timeoutSeconds: 30, cors: false },
   async (req, res) => {
     res.set("Cache-Control", "no-store");
     res.set("X-Content-Type-Options", "nosniff");
@@ -94,24 +94,25 @@ exports.chat = onRequest(
     try {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 20_000);
-      const r = await fetch("https://api.anthropic.com/v1/messages", {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
         method: "POST",
         signal: ctrl.signal,
-        headers: {
-          "content-type": "application/json",
-          "x-api-key": ANTHROPIC_API_KEY.value(),
-          "anthropic-version": "2023-06-01",
-        },
-        body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOKENS, system: SYSTEM_PROMPT, messages }),
+        headers: { "content-type": "application/json", "x-goog-api-key": GEMINI_API_KEY.value() },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents: messages.map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] })),
+          generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.4, thinkingConfig: { thinkingBudget: 0 } },
+        }),
       });
       clearTimeout(timer);
       if (!r.ok) {
         logger.error("LLM API error", r.status, (await r.text()).slice(0, 300));
-        res.status(502).json({ error: "The assistant is unavailable right now. Please use WhatsApp or the contact form." });
+        res.status(r.status === 429 ? 429 : 502).json({ error: r.status === 429 ? "The assistant is busy right now. Please try again in a minute, or message Josaphat on WhatsApp." : "The assistant is unavailable right now. Please use WhatsApp or the contact form." });
         return;
       }
       const data = await r.json();
-      const reply = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+      const parts = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) || [];
+      const reply = parts.map((p) => p.text || "").join("\n").trim();
       res.json({ reply: reply || "Sorry, I couldn't answer that. Please contact Josaphat directly." });
     } catch (e) {
       logger.error("chat failure", e && e.message);
