@@ -1,1 +1,5 @@
-{ "projects": { "default": "josaphat-chilokoto" } }
+{
+  "projects": {
+    "default": "josaphat-chilokoto"
+  }
+}
