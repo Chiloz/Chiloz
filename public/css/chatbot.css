@@ -1,5 +1,5 @@
 /* Josaphat · site assistant widget. Uses the site's theme tokens so dark/light just work. */
-.cb-fab{position:fixed;right:20px;bottom:20px;z-index:90;width:58px;height:58px;border-radius:50%;border:1px solid var(--border);
+.cb-fab{position:fixed;right:20px;bottom:20px;z-index:118;width:58px;height:58px;border-radius:50%;border:1px solid var(--border);
   background:linear-gradient(135deg,var(--accent),var(--accent-strong));color:var(--on-accent);cursor:pointer;display:grid;place-items:center;
   box-shadow:0 10px 30px var(--glow),var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease);animation:cb-pop .7s var(--ease) .8s both}
 .cb-fab:hover{transform:translateY(-3px) scale(1.06)}
@@ -7,11 +7,11 @@
 .cb-fab svg{width:26px;height:26px}
 .cb-fab::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--accent);opacity:0;animation:cb-ping 3.2s ease-out 2s infinite}
 .cb-fab.cb-open::after{display:none}
-.cb-nudge{position:fixed;right:88px;bottom:30px;z-index:89;max-width:210px;padding:10px 14px;border-radius:16px 16px 4px 16px;background:var(--surface-solid);
+.cb-nudge{position:fixed;right:88px;bottom:30px;z-index:117;max-width:210px;padding:10px 14px;border-radius:16px 16px 4px 16px;background:var(--surface-solid);
   color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow-sm);font:500 .85rem/1.35 var(--font-body);opacity:0;transform:translateY(8px);pointer-events:none;transition:.4s var(--ease)}
 .cb-nudge.show{opacity:1;transform:none;pointer-events:auto;cursor:pointer}
 
-.cb-panel{position:fixed;right:20px;bottom:90px;z-index:91;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100dvh - 120px));display:flex;flex-direction:column;
+.cb-panel{position:fixed;right:20px;bottom:90px;z-index:120;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100dvh - 120px));display:flex;flex-direction:column;
   background:var(--surface-solid);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;
   opacity:0;transform:translateY(16px) scale(.97);transform-origin:bottom right;visibility:hidden;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s}
 .cb-panel.open{opacity:1;transform:none;visibility:visible}

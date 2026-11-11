@@ -24,6 +24,11 @@ firebase deploy            # hosting + firestore rules
 - `tools/build-static.mjs` regenerates the fallback cards: `node tools/build-static.mjs`
 - `firestore.rules` security rules (owner-only writes, validated public contact form)
 - `firebase.json` hosting config: clean URLs, CSP + security headers, caching
+- `public/js/chatbot.js` + `public/css/chatbot.css` the chat widget (FAQ answers run in the browser)
+- `worker/` Cloudflare Worker that proxies the widget to Google Gemini; no Firebase Blaze plan needed (see `worker/DEPLOY.md`)
+
+## Chat assistant
+Common questions are answered locally in `chatbot.js`. Everything else goes to the Worker in `worker/`, which keeps the Gemini API key as a secret, only accepts requests from this site's origins, rate-limits per IP and falls back to a second model if the first is unavailable. Deploy and test steps: `worker/DEPLOY.md`. The site itself still deploys with `firebase deploy` and needs no paid plan.
 
 ## Editing projects
 Admin → Projects: Edit, change the preview picture, re-order with the arrows, delete or add new ones.

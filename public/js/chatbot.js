@@ -1,11 +1,13 @@
-/* Josaphat · site assistant. FAQ answers are instant and free; anything else goes to /api/chat (Firebase Function -> LLM).
+/* Josaphat · site assistant. FAQ answers are instant and free; anything else goes to the Cloudflare Worker (worker/) -> Gemini.
    Conversation lives only in this browser tab (sessionStorage). No dependencies. */
 const WA = "https://wa.me/260954030644";
 const EMAIL = "josaphatkychiloz@gmail.com";
-const API = "/api/chat";
+const API = "https://chiloz-chat.josaphat-chilokoto.workers.dev"; // set by worker/connect.mjs
 const MAX_LEN = 500, COOLDOWN = 2500, MAX_SESSION_CALLS = 25, STORE = "cb-history-v1";
 
 const FAQ = [
+  { q: /(how|what|which).*\b(this|your|the)\s+(chat\s?bot|bot|assistant|ai)\b.*(work|built|made|build|powered|run|model|tech)|\b(chat\s?bot|llm|gemini|rag)\b.*(how|built|made|powered|work)|\b(this|your)\s+(chat\s?bot|bot|assistant)\b.*(gemini|gpt|llm|model|api|using|use)|are you (a |an )?(bot|ai|human|robot|real)|(who|what) are you/i,
+    a: "I'm the AI assistant on this site. Simple questions (projects, services, contact) are answered instantly in your browser. Anything else goes to a small Cloudflare Worker that keeps the API key on the server, rate-limits requests and passes your question to Google's Gemini model." },
   { q: /\b(hi|hello|hey|hie|morning|afternoon|evening)\b/i, short: true,
     a: "Hey! 👋 I'm Josaphat's site assistant. Ask me about his projects, services or how to reach him." },
   { q: /(who|about).*(josaphat|you|chiloz)|tell me about (him|josaphat)/i,
@@ -87,10 +89,11 @@ function init() {
     if (hit) { busy = true; send.disabled = true; const t = typing(); await new Promise((r) => setTimeout(r, 450)); t.remove(); reply(hit.a, hit.wa); busy = false; send.disabled = false; return; }
 
     if (apiCalls >= MAX_SESSION_CALLS) { reply(`You've reached the chat limit for this visit. Please message Josaphat directly: ${WA}`, true); return; }
+    if (!API) { reply("I can only answer the common questions right now. For anything else, please message Josaphat directly and he'll reply personally.", true); return; }
     busy = true; send.disabled = true; apiCalls++;
     const t = typing(), ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), 25000);
     try {
-      const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctrl.signal, body: JSON.stringify({ messages: history.slice(-8) }) });
+      const r = await fetch(API, { method: "POST", mode: "cors", credentials: "omit", headers: { "Content-Type": "application/json" }, signal: ctrl.signal, body: JSON.stringify({ messages: history.slice(-8) }) });
       const data = await r.json().catch(() => ({}));
       t.remove();
       if (!r.ok || typeof data.reply !== "string") throw new Error(data.error || "bad response");

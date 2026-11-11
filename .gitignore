@@ -1,3 +1,7 @@
 .firebase/
 node_modules/
 .env
+
+# Cloudflare Worker
+.dev.vars
+.wrangler/

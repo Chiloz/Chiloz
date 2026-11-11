@@ -1,0 +1,23 @@
+name = "chiloz-chat"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Non-secret settings. The API key is NOT here: it is a secret (`npx wrangler secret put GEMINI_API_KEY`).
+[vars]
+# Only these sites may call the Worker from a browser.
+ALLOWED_ORIGINS = "https://josaphatchilokoto.space,https://www.josaphatchilokoto.space,https://josaphat-chilokoto.web.app,https://josaphat-chilokoto.firebaseapp.com"
+# Tried in order. If the first returns 404/429/5xx the next one is used. Change here when Google retires a model.
+GEMINI_MODELS = "gemini-3.5-flash-lite,gemini-2.5-flash-lite"
+
+[observability]
+enabled = true
+
+# Optional second rate-limit layer (needs Wrangler 4.36+; remove the leading # to enable, then redeploy).
+# If your Cloudflare plan rejects it at deploy time, leave it commented: the Worker already has its own limiter.
+# [[ratelimits]]
+# name = "RATE_LIMITER"
+# namespace_id = "1001"
+#   [ratelimits.simple]
+#   limit = 10
+#   period = 60

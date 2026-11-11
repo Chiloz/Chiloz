@@ -1,0 +1,16 @@
+{
+  "name": "chiloz-chat-worker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cloudflare Worker that proxies the josaphatchilokoto.space chat assistant to Google Gemini",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "connect": "node connect.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.36.0"
+  }
+}
